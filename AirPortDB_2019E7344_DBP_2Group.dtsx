@@ -1,0 +1,2972 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="6/4/2022 3:01:44 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="김대길"
+  DTS:CreatorName="김대길\kimda"
+  DTS:Description="SSIS 패키지 설명"
+  DTS:DTSID="{FD8EA8FC-BABC-48A9-83C6-42F8FDEA7CA7}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.168"
+  DTS:LocaleID="1042"
+  DTS:MaxErrorCount="0"
+  DTS:ObjectName="AirPortDB_2019E7344_DBP_2Group"
+  DTS:VersionGUID="{AB7571D3-57B8-44DA-808C-47FBEDD72639}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[DestinationConnectionExcel]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{676EAC60-E1EF-4496-BB1D-DAD807A9E36F}"
+      DTS:ObjectName="DestinationConnectionExcel">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="0"
+          DTS:ConnectRetryInterval="0"
+          DTS:ConnectionString="Provider=Microsoft.Jet.OLEDB.4.0;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[DestinationConnectionOLEDB]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{20E33ADF-EB08-47F2-9850-634E19B0B062}"
+      DTS:ObjectName="DestinationConnectionOLEDB">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=김대길;Initial Catalog=master;Provider=SQLNCLI11;Integrated Security=SSPI;Auto Translate=false;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SourceConnectionExcel]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{89310E7D-C25F-4DB3-B7FA-07AA79D066E7}"
+      DTS:ObjectName="SourceConnectionExcel">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="0"
+          DTS:ConnectRetryInterval="0"
+          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.16.0;Data Source=C:\Users\kimda\OneDrive\바탕 화면\안양대 강의\데이터베이스프로그래밍 기말과제\데베프기말과제.xlsx;Extended Properties=&quot;Excel 12.0 XML;HDR=YES&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SourceConnectionOLEDB]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{2378A645-DD2D-4470-BB0F-739BC8187D7B}"
+      DTS:ObjectName="SourceConnectionOLEDB">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=김대길;Initial Catalog=AirPortDB_2019E7344;Provider=SQLNCLI11;Integrated Security=SSPI;Auto Translate=false;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\SQL 태스크 1 준비"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:DTSID="{499BDC80-B35F-4825-B410-2DEE52479EC8}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:FailPackageOnFailure="True"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL 태스크 1 준비"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{20E33ADF-EB08-47F2-9850-634E19B0B062}"
+          SQLTask:SqlStatementSource="CREATE TABLE [dbo].[airplane_TBL] (&#xA;[flightNumber] char(10),&#xA;[airplaneKind] char(10),&#xA;[airplaneCost] money,&#xA;[airplaneLimit] int,&#xA;[airplaneNumber] char(10) NOT NULL&#xA;)&#xA;GO&#xA;CREATE TABLE [dbo].[flight_TBL] (&#xA;[memberID] char(8),&#xA;[flightStartPoint] nchar(10),&#xA;[flightEndPoint] nchar(10),&#xA;[flightStartDate] datetime,&#xA;[flightEndDate] datetime,&#xA;[flightCost] money,&#xA;[flightNumber] char(10) NOT NULL&#xA;)&#xA;GO&#xA;CREATE TABLE [dbo].[member_TBL] (&#xA;[memberID] char(8) NOT NULL,&#xA;[memberName] nchar(5) NOT NULL,&#xA;[memberBirth] date,&#xA;[memberPhone] nchar(20),&#xA;[memberAddress] nchar(20)&#xA;)&#xA;GO&#xA;CREATE TABLE [dbo].[seat_TBL] (&#xA;[airplaneNumber] char(10),&#xA;[seatGrade] nchar(2),&#xA;[seatCost] money,&#xA;[seatNumber] char(10) NOT NULL&#xA;)&#xA;GO&#xA;CREATE TABLE [dbo].[sysdiagrams] (&#xA;[name] nvarchar(128) NOT NULL,&#xA;[principal_id] int NOT NULL,&#xA;[diagram_id] int NOT NULL,&#xA;[version] int,&#xA;[definition] varbinary(max)&#xA;)&#xA;GO&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SQL 태스크 2 준비"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:DTSID="{721B4498-6658-4D12-9893-042CCB698261}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:FailPackageOnFailure="True"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL 태스크 2 준비"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{20E33ADF-EB08-47F2-9850-634E19B0B062}"
+          SQLTask:SqlStatementSource="CREATE TABLE [dbo].[예약현황메인키] (&#xA;[memberID] char(8) NOT NULL,&#xA;[flightNumber] char(10) NOT NULL,&#xA;[airplaneNumber] char(10) NOT NULL,&#xA;[seatNumber] char(10) NOT NULL&#xA;)&#xA;GO&#xA;CREATE TABLE [dbo].[이름아이디] (&#xA;[memberID] char(8) NOT NULL,&#xA;[memberName] nchar(5) NOT NULL&#xA;)&#xA;GO&#xA;CREATE TABLE [dbo].[총합가격] (&#xA;[memberID] char(8) NOT NULL,&#xA;[flightCost] money,&#xA;[airplaneCost] money,&#xA;[seatCost] money,&#xA;[총합가격] money&#xA;)&#xA;GO&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\데이터 흐름 태스크 1"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:DelayValidation="True"
+      DTS:DTSID="{4E99F6F6-8538-4541-B93B-B3D3617B2A11}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:FailPackageOnFailure="True"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="데이터 흐름 태스크 1"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          defaultBufferSize="3145728"
+          version="1">
+          <components>
+            <component
+              refId="Package\데이터 흐름 태스크 1\대상 - airplane_TBL"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB 대상;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All rights reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB 대상"
+              name="대상 - airplane_TBL"
+              usesDispositions="true"
+              validateExternalMetadata="False"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="명령이 종료되기 전의 제한 시간 값(초)입니다. 값 0은 제한 시간이 없음을 나타냅니다."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="행 집합을 여는 데 사용되는 데이터베이스 개체의 이름을 지정합니다."
+                  name="OpenRowset">[dbo].[airplane_TBL]</property>
+                <property
+                  dataType="System.String"
+                  description="행 집합을 여는 데 사용되는 데이터베이스 개체의 이름이 들어 있는 변수를 지정합니다."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="실행할 SQL 명령입니다."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="데이터 원본에서 코드 페이지 정보를 사용할 수 없을 때 사용할 열 코드 페이지를 지정합니다."
+                  name="DefaultCodePage">949</property>
+                <property
+                  dataType="System.Boolean"
+                  description="문자 데이터를 설명할 때 DefaultCodePage 속성 값을 사용하도록 합니다."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="데이터베이스에 액세스하는 데 사용되는 모드를 지정합니다."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="ID 열에 제공된 값을 대상에 복사할지 여부를 나타냅니다. false인 경우 ID 열의 값이 대상에서 자동 생성됩니다. 빠른 로드를 사용하는 경우에만 적용됩니다."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Null 포함 열을 대상에 Null로 삽입할지 여부를 나타냅니다. false인 경우 Null 포함 열은 지정된 기본값으로 대상에 삽입됩니다. 빠른 로드를 사용하는 경우에만 적용됩니다."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="빠른 로드와 함께 사용할 옵션을 지정합니다. 빠른 로드를 사용하는 경우에만 적용됩니다."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="데이터 삽입 도중 커밋이 수행되는 시점을 지정합니다. 값을 0으로 지정하면 데이터 삽입 완료 시에 커밋이 한 번 수행됩니다. 빠른 로드를 사용하는 경우에만 적용됩니다."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\데이터 흐름 태스크 1\대상 - airplane_TBL.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DestinationConnectionOLEDB]"
+                  connectionManagerRefId="Package.ConnectionManagers[DestinationConnectionOLEDB]"
+                  description="데이터베이스에 액세스하는 데 사용되는 OLE DB 런타임 연결입니다."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\데이터 흐름 태스크 1\대상 - airplane_TBL.Inputs[Destination Input]"
+                  errorOrTruncationOperation="삽입"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\데이터 흐름 태스크 1\대상 - airplane_TBL.Inputs[Destination Input].Columns[flightNumber]"
+                      cachedCodepage="949"
+                      cachedDataType="str"
+                      cachedLength="10"
+                      cachedName="flightNumber"
+                      externalMetadataColumnId="Package\데이터 흐름 태스크 1\대상 - airplane_TBL.Inputs[Destination Input].ExternalColumns[flightNumber]"
+                      lineageId="Package\데이터 흐름 태스크 1\원본 - airplane_TBL.Outputs[OLE DB 원본 출력].Columns[flightNumber]" />
+                    <inputColumn
+                      refId="Package\데이터 흐름 태스크 1\대상 - airplane_TBL.Inputs[Destination Input].Columns[airplaneKind]"
+                      cachedCodepage="949"
+                      cachedDataType="str"
+                      cachedLength="10"
+                      cachedName="airplaneKind"
+                      externalMetadataColumnId="Package\데이터 흐름 태스크 1\대상 - airplane_TBL.Inputs[Destination Input].ExternalColumns[airplaneKind]"
+                      lineageId="Package\데이터 흐름 태스크 1\원본 - airplane_TBL.Outputs[OLE DB 원본 출력].Columns[airplaneKind]" />
+                    <inputColumn
+                      refId="Package\데이터 흐름 태스크 1\대상 - airplane_TBL.Inputs[Destination Input].Columns[airplaneCost]"
+                      cachedDataType="cy"
+                      cachedName="airplaneCost"
+                      externalMetadataColumnId="Package\데이터 흐름 태스크 1\대상 - airplane_TBL.Inputs[Destination Input].ExternalColumns[airplaneCost]"
+                      lineageId="Package\데이터 흐름 태스크 1\원본 - airplane_TBL.Outputs[OLE DB 원본 출력].Columns[airplaneCost]" />
+                    <inputColumn
+                      refId="Package\데이터 흐름 태스크 1\대상 - airplane_TBL.Inputs[Destination Input].Columns[airplaneLimit]"
+                      cachedDataType="i4"
+                      cachedName="airplaneLimit"
+                      externalMetadataColumnId="Package\데이터 흐름 태스크 1\대상 - airplane_TBL.Inputs[Destination Input].ExternalColumns[airplaneLimit]"
+                      lineageId="Package\데이터 흐름 태스크 1\원본 - airplane_TBL.Outputs[OLE DB 원본 출력].Columns[airplaneLimit]" />
+                    <inputColumn
+                      refId="Package\데이터 흐름 태스크 1\대상 - airplane_TBL.Inputs[Destination Input].Columns[airplaneNumber]"
+                      cachedCodepage="949"
+                      cachedDataType="str"
+                      cachedLength="10"
+                      cachedName="airplaneNumber"
+                      externalMetadataColumnId="Package\데이터 흐름 태스크 1\대상 - airplane_TBL.Inputs[Destination Input].ExternalColumns[airplaneNumber]"
+                      lineageId="Package\데이터 흐름 태스크 1\원본 - airplane_TBL.Outputs[OLE DB 원본 출력].Columns[airplaneNumber]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\데이터 흐름 태스크 1\대상 - airplane_TBL.Inputs[Destination Input].ExternalColumns[flightNumber]"
+                      codePage="949"
+                      dataType="str"
+                      length="10"
+                      name="flightNumber" />
+                    <externalMetadataColumn
+                      refId="Package\데이터 흐름 태스크 1\대상 - airplane_TBL.Inputs[Destination Input].ExternalColumns[airplaneKind]"
+                      codePage="949"
+                      dataType="str"
+                      length="10"
+                      name="airplaneKind" />
+                    <externalMetadataColumn
+                      refId="Package\데이터 흐름 태스크 1\대상 - airplane_TBL.Inputs[Destination Input].ExternalColumns[airplaneCost]"
+                      dataType="cy"
+                      name="airplaneCost"
+                      scale="4" />
+                    <externalMetadataColumn
+                      refId="Package\데이터 흐름 태스크 1\대상 - airplane_TBL.Inputs[Destination Input].ExternalColumns[airplaneLimit]"
+                      dataType="i4"
+                      name="airplaneLimit" />
+                    <externalMetadataColumn
+                      refId="Package\데이터 흐름 태스크 1\대상 - airplane_TBL.Inputs[Destination Input].ExternalColumns[airplaneNumber]"
+                      codePage="949"
+                      dataType="str"
+                      length="10"
+                      name="airplaneNumber" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\데이터 흐름 태스크 1\대상 - airplane_TBL.Outputs[OLE DB 대상 오류 출력]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB 대상 오류 출력"
+                  synchronousInputId="Package\데이터 흐름 태스크 1\대상 - airplane_TBL.Inputs[Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\데이터 흐름 태스크 1\대상 - airplane_TBL.Outputs[OLE DB 대상 오류 출력].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\데이터 흐름 태스크 1\대상 - airplane_TBL.Outputs[OLE DB 대상 오류 출력].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\데이터 흐름 태스크 1\대상 - airplane_TBL.Outputs[OLE DB 대상 오류 출력].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\데이터 흐름 태스크 1\대상 - airplane_TBL.Outputs[OLE DB 대상 오류 출력].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\데이터 흐름 태스크 1\대상 1 - flight_TBL"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB 대상;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All rights reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB 대상"
+              name="대상 1 - flight_TBL"
+              usesDispositions="true"
+              validateExternalMetadata="False"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="명령이 종료되기 전의 제한 시간 값(초)입니다. 값 0은 제한 시간이 없음을 나타냅니다."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="행 집합을 여는 데 사용되는 데이터베이스 개체의 이름을 지정합니다."
+                  name="OpenRowset">[dbo].[flight_TBL]</property>
+                <property
+                  dataType="System.String"
+                  description="행 집합을 여는 데 사용되는 데이터베이스 개체의 이름이 들어 있는 변수를 지정합니다."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="실행할 SQL 명령입니다."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="데이터 원본에서 코드 페이지 정보를 사용할 수 없을 때 사용할 열 코드 페이지를 지정합니다."
+                  name="DefaultCodePage">949</property>
+                <property
+                  dataType="System.Boolean"
+                  description="문자 데이터를 설명할 때 DefaultCodePage 속성 값을 사용하도록 합니다."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="데이터베이스에 액세스하는 데 사용되는 모드를 지정합니다."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="ID 열에 제공된 값을 대상에 복사할지 여부를 나타냅니다. false인 경우 ID 열의 값이 대상에서 자동 생성됩니다. 빠른 로드를 사용하는 경우에만 적용됩니다."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Null 포함 열을 대상에 Null로 삽입할지 여부를 나타냅니다. false인 경우 Null 포함 열은 지정된 기본값으로 대상에 삽입됩니다. 빠른 로드를 사용하는 경우에만 적용됩니다."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="빠른 로드와 함께 사용할 옵션을 지정합니다. 빠른 로드를 사용하는 경우에만 적용됩니다."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="데이터 삽입 도중 커밋이 수행되는 시점을 지정합니다. 값을 0으로 지정하면 데이터 삽입 완료 시에 커밋이 한 번 수행됩니다. 빠른 로드를 사용하는 경우에만 적용됩니다."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\데이터 흐름 태스크 1\대상 1 - flight_TBL.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DestinationConnectionOLEDB]"
+                  connectionManagerRefId="Package.ConnectionManagers[DestinationConnectionOLEDB]"
+                  description="데이터베이스에 액세스하는 데 사용되는 OLE DB 런타임 연결입니다."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\데이터 흐름 태스크 1\대상 1 - flight_TBL.Inputs[Destination Input]"
+                  errorOrTruncationOperation="삽입"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\데이터 흐름 태스크 1\대상 1 - flight_TBL.Inputs[Destination Input].Columns[memberID]"
+                      cachedCodepage="949"
+                      cachedDataType="str"
+                      cachedLength="8"
+                      cachedName="memberID"
+                      externalMetadataColumnId="Package\데이터 흐름 태스크 1\대상 1 - flight_TBL.Inputs[Destination Input].ExternalColumns[memberID]"
+                      lineageId="Package\데이터 흐름 태스크 1\원본 1 - flight_TBL.Outputs[OLE DB 원본 출력].Columns[memberID]" />
+                    <inputColumn
+                      refId="Package\데이터 흐름 태스크 1\대상 1 - flight_TBL.Inputs[Destination Input].Columns[flightStartPoint]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="flightStartPoint"
+                      externalMetadataColumnId="Package\데이터 흐름 태스크 1\대상 1 - flight_TBL.Inputs[Destination Input].ExternalColumns[flightStartPoint]"
+                      lineageId="Package\데이터 흐름 태스크 1\원본 1 - flight_TBL.Outputs[OLE DB 원본 출력].Columns[flightStartPoint]" />
+                    <inputColumn
+                      refId="Package\데이터 흐름 태스크 1\대상 1 - flight_TBL.Inputs[Destination Input].Columns[flightEndPoint]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="flightEndPoint"
+                      externalMetadataColumnId="Package\데이터 흐름 태스크 1\대상 1 - flight_TBL.Inputs[Destination Input].ExternalColumns[flightEndPoint]"
+                      lineageId="Package\데이터 흐름 태스크 1\원본 1 - flight_TBL.Outputs[OLE DB 원본 출력].Columns[flightEndPoint]" />
+                    <inputColumn
+                      refId="Package\데이터 흐름 태스크 1\대상 1 - flight_TBL.Inputs[Destination Input].Columns[flightStartDate]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="flightStartDate"
+                      externalMetadataColumnId="Package\데이터 흐름 태스크 1\대상 1 - flight_TBL.Inputs[Destination Input].ExternalColumns[flightStartDate]"
+                      lineageId="Package\데이터 흐름 태스크 1\원본 1 - flight_TBL.Outputs[OLE DB 원본 출력].Columns[flightStartDate]" />
+                    <inputColumn
+                      refId="Package\데이터 흐름 태스크 1\대상 1 - flight_TBL.Inputs[Destination Input].Columns[flightEndDate]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="flightEndDate"
+                      externalMetadataColumnId="Package\데이터 흐름 태스크 1\대상 1 - flight_TBL.Inputs[Destination Input].ExternalColumns[flightEndDate]"
+                      lineageId="Package\데이터 흐름 태스크 1\원본 1 - flight_TBL.Outputs[OLE DB 원본 출력].Columns[flightEndDate]" />
+                    <inputColumn
+                      refId="Package\데이터 흐름 태스크 1\대상 1 - flight_TBL.Inputs[Destination Input].Columns[flightCost]"
+                      cachedDataType="cy"
+                      cachedName="flightCost"
+                      externalMetadataColumnId="Package\데이터 흐름 태스크 1\대상 1 - flight_TBL.Inputs[Destination Input].ExternalColumns[flightCost]"
+                      lineageId="Package\데이터 흐름 태스크 1\원본 1 - flight_TBL.Outputs[OLE DB 원본 출력].Columns[flightCost]" />
+                    <inputColumn
+                      refId="Package\데이터 흐름 태스크 1\대상 1 - flight_TBL.Inputs[Destination Input].Columns[flightNumber]"
+                      cachedCodepage="949"
+                      cachedDataType="str"
+                      cachedLength="10"
+                      cachedName="flightNumber"
+                      externalMetadataColumnId="Package\데이터 흐름 태스크 1\대상 1 - flight_TBL.Inputs[Destination Input].ExternalColumns[flightNumber]"
+                      lineageId="Package\데이터 흐름 태스크 1\원본 1 - flight_TBL.Outputs[OLE DB 원본 출력].Columns[flightNumber]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\데이터 흐름 태스크 1\대상 1 - flight_TBL.Inputs[Destination Input].ExternalColumns[memberID]"
+                      codePage="949"
+                      dataType="str"
+                      length="8"
+                      name="memberID" />
+                    <externalMetadataColumn
+                      refId="Package\데이터 흐름 태스크 1\대상 1 - flight_TBL.Inputs[Destination Input].ExternalColumns[flightStartPoint]"
+                      dataType="wstr"
+                      length="10"
+                      name="flightStartPoint" />
+                    <externalMetadataColumn
+                      refId="Package\데이터 흐름 태스크 1\대상 1 - flight_TBL.Inputs[Destination Input].ExternalColumns[flightEndPoint]"
+                      dataType="wstr"
+                      length="10"
+                      name="flightEndPoint" />
+                    <externalMetadataColumn
+                      refId="Package\데이터 흐름 태스크 1\대상 1 - flight_TBL.Inputs[Destination Input].ExternalColumns[flightStartDate]"
+                      dataType="dbTimeStamp"
+                      name="flightStartDate" />
+                    <externalMetadataColumn
+                      refId="Package\데이터 흐름 태스크 1\대상 1 - flight_TBL.Inputs[Destination Input].ExternalColumns[flightEndDate]"
+                      dataType="dbTimeStamp"
+                      name="flightEndDate" />
+                    <externalMetadataColumn
+                      refId="Package\데이터 흐름 태스크 1\대상 1 - flight_TBL.Inputs[Destination Input].ExternalColumns[flightCost]"
+                      dataType="cy"
+                      name="flightCost"
+                      scale="4" />
+                    <externalMetadataColumn
+                      refId="Package\데이터 흐름 태스크 1\대상 1 - flight_TBL.Inputs[Destination Input].ExternalColumns[flightNumber]"
+                      codePage="949"
+                      dataType="str"
+                      length="10"
+                      name="flightNumber" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\데이터 흐름 태스크 1\대상 1 - flight_TBL.Outputs[OLE DB 대상 오류 출력]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB 대상 오류 출력"
+                  synchronousInputId="Package\데이터 흐름 태스크 1\대상 1 - flight_TBL.Inputs[Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\데이터 흐름 태스크 1\대상 1 - flight_TBL.Outputs[OLE DB 대상 오류 출력].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\데이터 흐름 태스크 1\대상 1 - flight_TBL.Outputs[OLE DB 대상 오류 출력].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\데이터 흐름 태스크 1\대상 1 - flight_TBL.Outputs[OLE DB 대상 오류 출력].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\데이터 흐름 태스크 1\대상 1 - flight_TBL.Outputs[OLE DB 대상 오류 출력].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\데이터 흐름 태스크 1\대상 2 - member_TBL"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB 대상;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All rights reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB 대상"
+              name="대상 2 - member_TBL"
+              usesDispositions="true"
+              validateExternalMetadata="False"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="명령이 종료되기 전의 제한 시간 값(초)입니다. 값 0은 제한 시간이 없음을 나타냅니다."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="행 집합을 여는 데 사용되는 데이터베이스 개체의 이름을 지정합니다."
+                  name="OpenRowset">[dbo].[member_TBL]</property>
+                <property
+                  dataType="System.String"
+                  description="행 집합을 여는 데 사용되는 데이터베이스 개체의 이름이 들어 있는 변수를 지정합니다."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="실행할 SQL 명령입니다."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="데이터 원본에서 코드 페이지 정보를 사용할 수 없을 때 사용할 열 코드 페이지를 지정합니다."
+                  name="DefaultCodePage">949</property>
+                <property
+                  dataType="System.Boolean"
+                  description="문자 데이터를 설명할 때 DefaultCodePage 속성 값을 사용하도록 합니다."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="데이터베이스에 액세스하는 데 사용되는 모드를 지정합니다."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="ID 열에 제공된 값을 대상에 복사할지 여부를 나타냅니다. false인 경우 ID 열의 값이 대상에서 자동 생성됩니다. 빠른 로드를 사용하는 경우에만 적용됩니다."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Null 포함 열을 대상에 Null로 삽입할지 여부를 나타냅니다. false인 경우 Null 포함 열은 지정된 기본값으로 대상에 삽입됩니다. 빠른 로드를 사용하는 경우에만 적용됩니다."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="빠른 로드와 함께 사용할 옵션을 지정합니다. 빠른 로드를 사용하는 경우에만 적용됩니다."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="데이터 삽입 도중 커밋이 수행되는 시점을 지정합니다. 값을 0으로 지정하면 데이터 삽입 완료 시에 커밋이 한 번 수행됩니다. 빠른 로드를 사용하는 경우에만 적용됩니다."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\데이터 흐름 태스크 1\대상 2 - member_TBL.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DestinationConnectionOLEDB]"
+                  connectionManagerRefId="Package.ConnectionManagers[DestinationConnectionOLEDB]"
+                  description="데이터베이스에 액세스하는 데 사용되는 OLE DB 런타임 연결입니다."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\데이터 흐름 태스크 1\대상 2 - member_TBL.Inputs[Destination Input]"
+                  errorOrTruncationOperation="삽입"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\데이터 흐름 태스크 1\대상 2 - member_TBL.Inputs[Destination Input].Columns[memberID]"
+                      cachedCodepage="949"
+                      cachedDataType="str"
+                      cachedLength="8"
+                      cachedName="memberID"
+                      externalMetadataColumnId="Package\데이터 흐름 태스크 1\대상 2 - member_TBL.Inputs[Destination Input].ExternalColumns[memberID]"
+                      lineageId="Package\데이터 흐름 태스크 1\원본 2 - member_TBL.Outputs[OLE DB 원본 출력].Columns[memberID]" />
+                    <inputColumn
+                      refId="Package\데이터 흐름 태스크 1\대상 2 - member_TBL.Inputs[Destination Input].Columns[memberName]"
+                      cachedDataType="wstr"
+                      cachedLength="5"
+                      cachedName="memberName"
+                      externalMetadataColumnId="Package\데이터 흐름 태스크 1\대상 2 - member_TBL.Inputs[Destination Input].ExternalColumns[memberName]"
+                      lineageId="Package\데이터 흐름 태스크 1\원본 2 - member_TBL.Outputs[OLE DB 원본 출력].Columns[memberName]" />
+                    <inputColumn
+                      refId="Package\데이터 흐름 태스크 1\대상 2 - member_TBL.Inputs[Destination Input].Columns[memberBirth]"
+                      cachedDataType="dbDate"
+                      cachedName="memberBirth"
+                      externalMetadataColumnId="Package\데이터 흐름 태스크 1\대상 2 - member_TBL.Inputs[Destination Input].ExternalColumns[memberBirth]"
+                      lineageId="Package\데이터 흐름 태스크 1\원본 2 - member_TBL.Outputs[OLE DB 원본 출력].Columns[memberBirth]" />
+                    <inputColumn
+                      refId="Package\데이터 흐름 태스크 1\대상 2 - member_TBL.Inputs[Destination Input].Columns[memberPhone]"
+                      cachedDataType="wstr"
+                      cachedLength="20"
+                      cachedName="memberPhone"
+                      externalMetadataColumnId="Package\데이터 흐름 태스크 1\대상 2 - member_TBL.Inputs[Destination Input].ExternalColumns[memberPhone]"
+                      lineageId="Package\데이터 흐름 태스크 1\원본 2 - member_TBL.Outputs[OLE DB 원본 출력].Columns[memberPhone]" />
+                    <inputColumn
+                      refId="Package\데이터 흐름 태스크 1\대상 2 - member_TBL.Inputs[Destination Input].Columns[memberAddress]"
+                      cachedDataType="wstr"
+                      cachedLength="20"
+                      cachedName="memberAddress"
+                      externalMetadataColumnId="Package\데이터 흐름 태스크 1\대상 2 - member_TBL.Inputs[Destination Input].ExternalColumns[memberAddress]"
+                      lineageId="Package\데이터 흐름 태스크 1\원본 2 - member_TBL.Outputs[OLE DB 원본 출력].Columns[memberAddress]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\데이터 흐름 태스크 1\대상 2 - member_TBL.Inputs[Destination Input].ExternalColumns[memberID]"
+                      codePage="949"
+                      dataType="str"
+                      length="8"
+                      name="memberID" />
+                    <externalMetadataColumn
+                      refId="Package\데이터 흐름 태스크 1\대상 2 - member_TBL.Inputs[Destination Input].ExternalColumns[memberName]"
+                      dataType="wstr"
+                      length="5"
+                      name="memberName" />
+                    <externalMetadataColumn
+                      refId="Package\데이터 흐름 태스크 1\대상 2 - member_TBL.Inputs[Destination Input].ExternalColumns[memberBirth]"
+                      dataType="dbDate"
+                      name="memberBirth" />
+                    <externalMetadataColumn
+                      refId="Package\데이터 흐름 태스크 1\대상 2 - member_TBL.Inputs[Destination Input].ExternalColumns[memberPhone]"
+                      dataType="wstr"
+                      length="20"
+                      name="memberPhone" />
+                    <externalMetadataColumn
+                      refId="Package\데이터 흐름 태스크 1\대상 2 - member_TBL.Inputs[Destination Input].ExternalColumns[memberAddress]"
+                      dataType="wstr"
+                      length="20"
+                      name="memberAddress" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\데이터 흐름 태스크 1\대상 2 - member_TBL.Outputs[OLE DB 대상 오류 출력]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB 대상 오류 출력"
+                  synchronousInputId="Package\데이터 흐름 태스크 1\대상 2 - member_TBL.Inputs[Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\데이터 흐름 태스크 1\대상 2 - member_TBL.Outputs[OLE DB 대상 오류 출력].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\데이터 흐름 태스크 1\대상 2 - member_TBL.Outputs[OLE DB 대상 오류 출력].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\데이터 흐름 태스크 1\대상 2 - member_TBL.Outputs[OLE DB 대상 오류 출력].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\데이터 흐름 태스크 1\대상 2 - member_TBL.Outputs[OLE DB 대상 오류 출력].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\데이터 흐름 태스크 1\대상 3 - seat_TBL"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB 대상;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All rights reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB 대상"
+              name="대상 3 - seat_TBL"
+              usesDispositions="true"
+              validateExternalMetadata="False"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="명령이 종료되기 전의 제한 시간 값(초)입니다. 값 0은 제한 시간이 없음을 나타냅니다."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="행 집합을 여는 데 사용되는 데이터베이스 개체의 이름을 지정합니다."
+                  name="OpenRowset">[dbo].[seat_TBL]</property>
+                <property
+                  dataType="System.String"
+                  description="행 집합을 여는 데 사용되는 데이터베이스 개체의 이름이 들어 있는 변수를 지정합니다."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="실행할 SQL 명령입니다."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="데이터 원본에서 코드 페이지 정보를 사용할 수 없을 때 사용할 열 코드 페이지를 지정합니다."
+                  name="DefaultCodePage">949</property>
+                <property
+                  dataType="System.Boolean"
+                  description="문자 데이터를 설명할 때 DefaultCodePage 속성 값을 사용하도록 합니다."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="데이터베이스에 액세스하는 데 사용되는 모드를 지정합니다."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="ID 열에 제공된 값을 대상에 복사할지 여부를 나타냅니다. false인 경우 ID 열의 값이 대상에서 자동 생성됩니다. 빠른 로드를 사용하는 경우에만 적용됩니다."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Null 포함 열을 대상에 Null로 삽입할지 여부를 나타냅니다. false인 경우 Null 포함 열은 지정된 기본값으로 대상에 삽입됩니다. 빠른 로드를 사용하는 경우에만 적용됩니다."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="빠른 로드와 함께 사용할 옵션을 지정합니다. 빠른 로드를 사용하는 경우에만 적용됩니다."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="데이터 삽입 도중 커밋이 수행되는 시점을 지정합니다. 값을 0으로 지정하면 데이터 삽입 완료 시에 커밋이 한 번 수행됩니다. 빠른 로드를 사용하는 경우에만 적용됩니다."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\데이터 흐름 태스크 1\대상 3 - seat_TBL.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DestinationConnectionOLEDB]"
+                  connectionManagerRefId="Package.ConnectionManagers[DestinationConnectionOLEDB]"
+                  description="데이터베이스에 액세스하는 데 사용되는 OLE DB 런타임 연결입니다."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\데이터 흐름 태스크 1\대상 3 - seat_TBL.Inputs[Destination Input]"
+                  errorOrTruncationOperation="삽입"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\데이터 흐름 태스크 1\대상 3 - seat_TBL.Inputs[Destination Input].Columns[airplaneNumber]"
+                      cachedCodepage="949"
+                      cachedDataType="str"
+                      cachedLength="10"
+                      cachedName="airplaneNumber"
+                      externalMetadataColumnId="Package\데이터 흐름 태스크 1\대상 3 - seat_TBL.Inputs[Destination Input].ExternalColumns[airplaneNumber]"
+                      lineageId="Package\데이터 흐름 태스크 1\원본 3 - seat_TBL.Outputs[OLE DB 원본 출력].Columns[airplaneNumber]" />
+                    <inputColumn
+                      refId="Package\데이터 흐름 태스크 1\대상 3 - seat_TBL.Inputs[Destination Input].Columns[seatGrade]"
+                      cachedDataType="wstr"
+                      cachedLength="2"
+                      cachedName="seatGrade"
+                      externalMetadataColumnId="Package\데이터 흐름 태스크 1\대상 3 - seat_TBL.Inputs[Destination Input].ExternalColumns[seatGrade]"
+                      lineageId="Package\데이터 흐름 태스크 1\원본 3 - seat_TBL.Outputs[OLE DB 원본 출력].Columns[seatGrade]" />
+                    <inputColumn
+                      refId="Package\데이터 흐름 태스크 1\대상 3 - seat_TBL.Inputs[Destination Input].Columns[seatCost]"
+                      cachedDataType="cy"
+                      cachedName="seatCost"
+                      externalMetadataColumnId="Package\데이터 흐름 태스크 1\대상 3 - seat_TBL.Inputs[Destination Input].ExternalColumns[seatCost]"
+                      lineageId="Package\데이터 흐름 태스크 1\원본 3 - seat_TBL.Outputs[OLE DB 원본 출력].Columns[seatCost]" />
+                    <inputColumn
+                      refId="Package\데이터 흐름 태스크 1\대상 3 - seat_TBL.Inputs[Destination Input].Columns[seatNumber]"
+                      cachedCodepage="949"
+                      cachedDataType="str"
+                      cachedLength="10"
+                      cachedName="seatNumber"
+                      externalMetadataColumnId="Package\데이터 흐름 태스크 1\대상 3 - seat_TBL.Inputs[Destination Input].ExternalColumns[seatNumber]"
+                      lineageId="Package\데이터 흐름 태스크 1\원본 3 - seat_TBL.Outputs[OLE DB 원본 출력].Columns[seatNumber]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\데이터 흐름 태스크 1\대상 3 - seat_TBL.Inputs[Destination Input].ExternalColumns[airplaneNumber]"
+                      codePage="949"
+                      dataType="str"
+                      length="10"
+                      name="airplaneNumber" />
+                    <externalMetadataColumn
+                      refId="Package\데이터 흐름 태스크 1\대상 3 - seat_TBL.Inputs[Destination Input].ExternalColumns[seatGrade]"
+                      dataType="wstr"
+                      length="2"
+                      name="seatGrade" />
+                    <externalMetadataColumn
+                      refId="Package\데이터 흐름 태스크 1\대상 3 - seat_TBL.Inputs[Destination Input].ExternalColumns[seatCost]"
+                      dataType="cy"
+                      name="seatCost"
+                      scale="4" />
+                    <externalMetadataColumn
+                      refId="Package\데이터 흐름 태스크 1\대상 3 - seat_TBL.Inputs[Destination Input].ExternalColumns[seatNumber]"
+                      codePage="949"
+                      dataType="str"
+                      length="10"
+                      name="seatNumber" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\데이터 흐름 태스크 1\대상 3 - seat_TBL.Outputs[OLE DB 대상 오류 출력]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB 대상 오류 출력"
+                  synchronousInputId="Package\데이터 흐름 태스크 1\대상 3 - seat_TBL.Inputs[Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\데이터 흐름 태스크 1\대상 3 - seat_TBL.Outputs[OLE DB 대상 오류 출력].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\데이터 흐름 태스크 1\대상 3 - seat_TBL.Outputs[OLE DB 대상 오류 출력].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\데이터 흐름 태스크 1\대상 3 - seat_TBL.Outputs[OLE DB 대상 오류 출력].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\데이터 흐름 태스크 1\대상 3 - seat_TBL.Outputs[OLE DB 대상 오류 출력].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\데이터 흐름 태스크 1\대상 4 - sysdiagrams"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB 대상;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All rights reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB 대상"
+              name="대상 4 - sysdiagrams"
+              usesDispositions="true"
+              validateExternalMetadata="False"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="명령이 종료되기 전의 제한 시간 값(초)입니다. 값 0은 제한 시간이 없음을 나타냅니다."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="행 집합을 여는 데 사용되는 데이터베이스 개체의 이름을 지정합니다."
+                  name="OpenRowset">[dbo].[sysdiagrams]</property>
+                <property
+                  dataType="System.String"
+                  description="행 집합을 여는 데 사용되는 데이터베이스 개체의 이름이 들어 있는 변수를 지정합니다."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="실행할 SQL 명령입니다."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="데이터 원본에서 코드 페이지 정보를 사용할 수 없을 때 사용할 열 코드 페이지를 지정합니다."
+                  name="DefaultCodePage">949</property>
+                <property
+                  dataType="System.Boolean"
+                  description="문자 데이터를 설명할 때 DefaultCodePage 속성 값을 사용하도록 합니다."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="데이터베이스에 액세스하는 데 사용되는 모드를 지정합니다."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="ID 열에 제공된 값을 대상에 복사할지 여부를 나타냅니다. false인 경우 ID 열의 값이 대상에서 자동 생성됩니다. 빠른 로드를 사용하는 경우에만 적용됩니다."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Null 포함 열을 대상에 Null로 삽입할지 여부를 나타냅니다. false인 경우 Null 포함 열은 지정된 기본값으로 대상에 삽입됩니다. 빠른 로드를 사용하는 경우에만 적용됩니다."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="빠른 로드와 함께 사용할 옵션을 지정합니다. 빠른 로드를 사용하는 경우에만 적용됩니다."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="데이터 삽입 도중 커밋이 수행되는 시점을 지정합니다. 값을 0으로 지정하면 데이터 삽입 완료 시에 커밋이 한 번 수행됩니다. 빠른 로드를 사용하는 경우에만 적용됩니다."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\데이터 흐름 태스크 1\대상 4 - sysdiagrams.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DestinationConnectionOLEDB]"
+                  connectionManagerRefId="Package.ConnectionManagers[DestinationConnectionOLEDB]"
+                  description="데이터베이스에 액세스하는 데 사용되는 OLE DB 런타임 연결입니다."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\데이터 흐름 태스크 1\대상 4 - sysdiagrams.Inputs[Destination Input]"
+                  errorOrTruncationOperation="삽입"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\데이터 흐름 태스크 1\대상 4 - sysdiagrams.Inputs[Destination Input].Columns[name]"
+                      cachedDataType="wstr"
+                      cachedLength="128"
+                      cachedName="name"
+                      externalMetadataColumnId="Package\데이터 흐름 태스크 1\대상 4 - sysdiagrams.Inputs[Destination Input].ExternalColumns[name]"
+                      lineageId="Package\데이터 흐름 태스크 1\원본 4 - sysdiagrams.Outputs[OLE DB 원본 출력].Columns[name]" />
+                    <inputColumn
+                      refId="Package\데이터 흐름 태스크 1\대상 4 - sysdiagrams.Inputs[Destination Input].Columns[principal_id]"
+                      cachedDataType="i4"
+                      cachedName="principal_id"
+                      externalMetadataColumnId="Package\데이터 흐름 태스크 1\대상 4 - sysdiagrams.Inputs[Destination Input].ExternalColumns[principal_id]"
+                      lineageId="Package\데이터 흐름 태스크 1\원본 4 - sysdiagrams.Outputs[OLE DB 원본 출력].Columns[principal_id]" />
+                    <inputColumn
+                      refId="Package\데이터 흐름 태스크 1\대상 4 - sysdiagrams.Inputs[Destination Input].Columns[diagram_id]"
+                      cachedDataType="i4"
+                      cachedName="diagram_id"
+                      externalMetadataColumnId="Package\데이터 흐름 태스크 1\대상 4 - sysdiagrams.Inputs[Destination Input].ExternalColumns[diagram_id]"
+                      lineageId="Package\데이터 흐름 태스크 1\원본 4 - sysdiagrams.Outputs[OLE DB 원본 출력].Columns[diagram_id]" />
+                    <inputColumn
+                      refId="Package\데이터 흐름 태스크 1\대상 4 - sysdiagrams.Inputs[Destination Input].Columns[version]"
+                      cachedDataType="i4"
+                      cachedName="version"
+                      externalMetadataColumnId="Package\데이터 흐름 태스크 1\대상 4 - sysdiagrams.Inputs[Destination Input].ExternalColumns[version]"
+                      lineageId="Package\데이터 흐름 태스크 1\원본 4 - sysdiagrams.Outputs[OLE DB 원본 출력].Columns[version]" />
+                    <inputColumn
+                      refId="Package\데이터 흐름 태스크 1\대상 4 - sysdiagrams.Inputs[Destination Input].Columns[definition]"
+                      cachedDataType="image"
+                      cachedName="definition"
+                      externalMetadataColumnId="Package\데이터 흐름 태스크 1\대상 4 - sysdiagrams.Inputs[Destination Input].ExternalColumns[definition]"
+                      lineageId="Package\데이터 흐름 태스크 1\원본 4 - sysdiagrams.Outputs[OLE DB 원본 출력].Columns[definition]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\데이터 흐름 태스크 1\대상 4 - sysdiagrams.Inputs[Destination Input].ExternalColumns[name]"
+                      dataType="wstr"
+                      length="128"
+                      name="name" />
+                    <externalMetadataColumn
+                      refId="Package\데이터 흐름 태스크 1\대상 4 - sysdiagrams.Inputs[Destination Input].ExternalColumns[principal_id]"
+                      dataType="i4"
+                      name="principal_id" />
+                    <externalMetadataColumn
+                      refId="Package\데이터 흐름 태스크 1\대상 4 - sysdiagrams.Inputs[Destination Input].ExternalColumns[diagram_id]"
+                      dataType="i4"
+                      name="diagram_id" />
+                    <externalMetadataColumn
+                      refId="Package\데이터 흐름 태스크 1\대상 4 - sysdiagrams.Inputs[Destination Input].ExternalColumns[version]"
+                      dataType="i4"
+                      name="version" />
+                    <externalMetadataColumn
+                      refId="Package\데이터 흐름 태스크 1\대상 4 - sysdiagrams.Inputs[Destination Input].ExternalColumns[definition]"
+                      dataType="image"
+                      name="definition" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\데이터 흐름 태스크 1\대상 4 - sysdiagrams.Outputs[OLE DB 대상 오류 출력]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB 대상 오류 출력"
+                  synchronousInputId="Package\데이터 흐름 태스크 1\대상 4 - sysdiagrams.Inputs[Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\데이터 흐름 태스크 1\대상 4 - sysdiagrams.Outputs[OLE DB 대상 오류 출력].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\데이터 흐름 태스크 1\대상 4 - sysdiagrams.Outputs[OLE DB 대상 오류 출력].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\데이터 흐름 태스크 1\대상 4 - sysdiagrams.Outputs[OLE DB 대상 오류 출력].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\데이터 흐름 태스크 1\대상 4 - sysdiagrams.Outputs[OLE DB 대상 오류 출력].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\데이터 흐름 태스크 1\원본 - airplane_TBL"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB 원본;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All rights reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB 원본"
+              name="원본 - airplane_TBL"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="명령이 종료되기 전의 제한 시간 값(초)입니다. 값 0은 제한 시간이 없음을 나타냅니다."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="행 집합을 여는 데 사용되는 데이터베이스 개체의 이름을 지정합니다."
+                  name="OpenRowset">[dbo].[airplane_TBL]</property>
+                <property
+                  dataType="System.String"
+                  description="행 집합을 여는 데 사용되는 데이터베이스 개체의 이름이 들어 있는 변수를 지정합니다."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="실행할 SQL 명령입니다."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="실행할 SQL 명령이 들어 있는 변수입니다."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="데이터 원본에서 코드 페이지 정보를 사용할 수 없을 때 사용할 열 코드 페이지를 지정합니다."
+                  name="DefaultCodePage">949</property>
+                <property
+                  dataType="System.Boolean"
+                  description="문자 데이터를 설명할 때 DefaultCodePage 속성 값을 사용하도록 합니다."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="데이터베이스에 액세스하는 데 사용되는 모드를 지정합니다."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="SQL 명령의 매개 변수와 변수 사이의 매핑입니다."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\데이터 흐름 태스크 1\원본 - airplane_TBL.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[SourceConnectionOLEDB]"
+                  connectionManagerRefId="Package.ConnectionManagers[SourceConnectionOLEDB]"
+                  description="데이터베이스에 액세스하는 데 사용되는 OLE DB 런타임 연결입니다."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\데이터 흐름 태스크 1\원본 - airplane_TBL.Outputs[OLE DB 원본 출력]"
+                  name="OLE DB 원본 출력">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\데이터 흐름 태스크 1\원본 - airplane_TBL.Outputs[OLE DB 원본 출력].Columns[flightNumber]"
+                      codePage="949"
+                      dataType="str"
+                      errorOrTruncationOperation="변환"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\데이터 흐름 태스크 1\원본 - airplane_TBL.Outputs[OLE DB 원본 출력].ExternalColumns[flightNumber]"
+                      length="10"
+                      lineageId="Package\데이터 흐름 태스크 1\원본 - airplane_TBL.Outputs[OLE DB 원본 출력].Columns[flightNumber]"
+                      name="flightNumber"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\데이터 흐름 태스크 1\원본 - airplane_TBL.Outputs[OLE DB 원본 출력].Columns[airplaneKind]"
+                      codePage="949"
+                      dataType="str"
+                      errorOrTruncationOperation="변환"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\데이터 흐름 태스크 1\원본 - airplane_TBL.Outputs[OLE DB 원본 출력].ExternalColumns[airplaneKind]"
+                      length="10"
+                      lineageId="Package\데이터 흐름 태스크 1\원본 - airplane_TBL.Outputs[OLE DB 원본 출력].Columns[airplaneKind]"
+                      name="airplaneKind"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\데이터 흐름 태스크 1\원본 - airplane_TBL.Outputs[OLE DB 원본 출력].Columns[airplaneCost]"
+                      dataType="cy"
+                      errorOrTruncationOperation="변환"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\데이터 흐름 태스크 1\원본 - airplane_TBL.Outputs[OLE DB 원본 출력].ExternalColumns[airplaneCost]"
+                      lineageId="Package\데이터 흐름 태스크 1\원본 - airplane_TBL.Outputs[OLE DB 원본 출력].Columns[airplaneCost]"
+                      name="airplaneCost"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\데이터 흐름 태스크 1\원본 - airplane_TBL.Outputs[OLE DB 원본 출력].Columns[airplaneLimit]"
+                      dataType="i4"
+                      errorOrTruncationOperation="변환"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\데이터 흐름 태스크 1\원본 - airplane_TBL.Outputs[OLE DB 원본 출력].ExternalColumns[airplaneLimit]"
+                      lineageId="Package\데이터 흐름 태스크 1\원본 - airplane_TBL.Outputs[OLE DB 원본 출력].Columns[airplaneLimit]"
+                      name="airplaneLimit"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\데이터 흐름 태스크 1\원본 - airplane_TBL.Outputs[OLE DB 원본 출력].Columns[airplaneNumber]"
+                      codePage="949"
+                      dataType="str"
+                      errorOrTruncationOperation="변환"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\데이터 흐름 태스크 1\원본 - airplane_TBL.Outputs[OLE DB 원본 출력].ExternalColumns[airplaneNumber]"
+                      length="10"
+                      lineageId="Package\데이터 흐름 태스크 1\원본 - airplane_TBL.Outputs[OLE DB 원본 출력].Columns[airplaneNumber]"
+                      name="airplaneNumber"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\데이터 흐름 태스크 1\원본 - airplane_TBL.Outputs[OLE DB 원본 출력].ExternalColumns[flightNumber]"
+                      codePage="949"
+                      dataType="str"
+                      length="10"
+                      name="flightNumber" />
+                    <externalMetadataColumn
+                      refId="Package\데이터 흐름 태스크 1\원본 - airplane_TBL.Outputs[OLE DB 원본 출력].ExternalColumns[airplaneKind]"
+                      codePage="949"
+                      dataType="str"
+                      length="10"
+                      name="airplaneKind" />
+                    <externalMetadataColumn
+                      refId="Package\데이터 흐름 태스크 1\원본 - airplane_TBL.Outputs[OLE DB 원본 출력].ExternalColumns[airplaneCost]"
+                      dataType="cy"
+                      name="airplaneCost" />
+                    <externalMetadataColumn
+                      refId="Package\데이터 흐름 태스크 1\원본 - airplane_TBL.Outputs[OLE DB 원본 출력].ExternalColumns[airplaneLimit]"
+                      dataType="i4"
+                      name="airplaneLimit" />
+                    <externalMetadataColumn
+                      refId="Package\데이터 흐름 태스크 1\원본 - airplane_TBL.Outputs[OLE DB 원본 출력].ExternalColumns[airplaneNumber]"
+                      codePage="949"
+                      dataType="str"
+                      length="10"
+                      name="airplaneNumber" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\데이터 흐름 태스크 1\원본 - airplane_TBL.Outputs[OLE DB 원본 오류 출력]"
+                  isErrorOut="true"
+                  name="OLE DB 원본 오류 출력">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\데이터 흐름 태스크 1\원본 - airplane_TBL.Outputs[OLE DB 원본 오류 출력].Columns[flightNumber]"
+                      codePage="949"
+                      dataType="str"
+                      length="10"
+                      lineageId="Package\데이터 흐름 태스크 1\원본 - airplane_TBL.Outputs[OLE DB 원본 오류 출력].Columns[flightNumber]"
+                      name="flightNumber" />
+                    <outputColumn
+                      refId="Package\데이터 흐름 태스크 1\원본 - airplane_TBL.Outputs[OLE DB 원본 오류 출력].Columns[airplaneKind]"
+                      codePage="949"
+                      dataType="str"
+                      length="10"
+                      lineageId="Package\데이터 흐름 태스크 1\원본 - airplane_TBL.Outputs[OLE DB 원본 오류 출력].Columns[airplaneKind]"
+                      name="airplaneKind" />
+                    <outputColumn
+                      refId="Package\데이터 흐름 태스크 1\원본 - airplane_TBL.Outputs[OLE DB 원본 오류 출력].Columns[airplaneCost]"
+                      dataType="cy"
+                      lineageId="Package\데이터 흐름 태스크 1\원본 - airplane_TBL.Outputs[OLE DB 원본 오류 출력].Columns[airplaneCost]"
+                      name="airplaneCost" />
+                    <outputColumn
+                      refId="Package\데이터 흐름 태스크 1\원본 - airplane_TBL.Outputs[OLE DB 원본 오류 출력].Columns[airplaneLimit]"
+                      dataType="i4"
+                      lineageId="Package\데이터 흐름 태스크 1\원본 - airplane_TBL.Outputs[OLE DB 원본 오류 출력].Columns[airplaneLimit]"
+                      name="airplaneLimit" />
+                    <outputColumn
+                      refId="Package\데이터 흐름 태스크 1\원본 - airplane_TBL.Outputs[OLE DB 원본 오류 출력].Columns[airplaneNumber]"
+                      codePage="949"
+                      dataType="str"
+                      length="10"
+                      lineageId="Package\데이터 흐름 태스크 1\원본 - airplane_TBL.Outputs[OLE DB 원본 오류 출력].Columns[airplaneNumber]"
+                      name="airplaneNumber" />
+                    <outputColumn
+                      refId="Package\데이터 흐름 태스크 1\원본 - airplane_TBL.Outputs[OLE DB 원본 오류 출력].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\데이터 흐름 태스크 1\원본 - airplane_TBL.Outputs[OLE DB 원본 오류 출력].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\데이터 흐름 태스크 1\원본 - airplane_TBL.Outputs[OLE DB 원본 오류 출력].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\데이터 흐름 태스크 1\원본 - airplane_TBL.Outputs[OLE DB 원본 오류 출력].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\데이터 흐름 태스크 1\원본 1 - flight_TBL"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB 원본;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All rights reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB 원본"
+              name="원본 1 - flight_TBL"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="명령이 종료되기 전의 제한 시간 값(초)입니다. 값 0은 제한 시간이 없음을 나타냅니다."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="행 집합을 여는 데 사용되는 데이터베이스 개체의 이름을 지정합니다."
+                  name="OpenRowset">[dbo].[flight_TBL]</property>
+                <property
+                  dataType="System.String"
+                  description="행 집합을 여는 데 사용되는 데이터베이스 개체의 이름이 들어 있는 변수를 지정합니다."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="실행할 SQL 명령입니다."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="실행할 SQL 명령이 들어 있는 변수입니다."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="데이터 원본에서 코드 페이지 정보를 사용할 수 없을 때 사용할 열 코드 페이지를 지정합니다."
+                  name="DefaultCodePage">949</property>
+                <property
+                  dataType="System.Boolean"
+                  description="문자 데이터를 설명할 때 DefaultCodePage 속성 값을 사용하도록 합니다."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="데이터베이스에 액세스하는 데 사용되는 모드를 지정합니다."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="SQL 명령의 매개 변수와 변수 사이의 매핑입니다."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\데이터 흐름 태스크 1\원본 1 - flight_TBL.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[SourceConnectionOLEDB]"
+                  connectionManagerRefId="Package.ConnectionManagers[SourceConnectionOLEDB]"
+                  description="데이터베이스에 액세스하는 데 사용되는 OLE DB 런타임 연결입니다."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\데이터 흐름 태스크 1\원본 1 - flight_TBL.Outputs[OLE DB 원본 출력]"
+                  name="OLE DB 원본 출력">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\데이터 흐름 태스크 1\원본 1 - flight_TBL.Outputs[OLE DB 원본 출력].Columns[memberID]"
+                      codePage="949"
+                      dataType="str"
+                      errorOrTruncationOperation="변환"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\데이터 흐름 태스크 1\원본 1 - flight_TBL.Outputs[OLE DB 원본 출력].ExternalColumns[memberID]"
+                      length="8"
+                      lineageId="Package\데이터 흐름 태스크 1\원본 1 - flight_TBL.Outputs[OLE DB 원본 출력].Columns[memberID]"
+                      name="memberID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\데이터 흐름 태스크 1\원본 1 - flight_TBL.Outputs[OLE DB 원본 출력].Columns[flightStartPoint]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="변환"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\데이터 흐름 태스크 1\원본 1 - flight_TBL.Outputs[OLE DB 원본 출력].ExternalColumns[flightStartPoint]"
+                      length="10"
+                      lineageId="Package\데이터 흐름 태스크 1\원본 1 - flight_TBL.Outputs[OLE DB 원본 출력].Columns[flightStartPoint]"
+                      name="flightStartPoint"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\데이터 흐름 태스크 1\원본 1 - flight_TBL.Outputs[OLE DB 원본 출력].Columns[flightEndPoint]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="변환"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\데이터 흐름 태스크 1\원본 1 - flight_TBL.Outputs[OLE DB 원본 출력].ExternalColumns[flightEndPoint]"
+                      length="10"
+                      lineageId="Package\데이터 흐름 태스크 1\원본 1 - flight_TBL.Outputs[OLE DB 원본 출력].Columns[flightEndPoint]"
+                      name="flightEndPoint"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\데이터 흐름 태스크 1\원본 1 - flight_TBL.Outputs[OLE DB 원본 출력].Columns[flightStartDate]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="변환"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\데이터 흐름 태스크 1\원본 1 - flight_TBL.Outputs[OLE DB 원본 출력].ExternalColumns[flightStartDate]"
+                      lineageId="Package\데이터 흐름 태스크 1\원본 1 - flight_TBL.Outputs[OLE DB 원본 출력].Columns[flightStartDate]"
+                      name="flightStartDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\데이터 흐름 태스크 1\원본 1 - flight_TBL.Outputs[OLE DB 원본 출력].Columns[flightEndDate]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="변환"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\데이터 흐름 태스크 1\원본 1 - flight_TBL.Outputs[OLE DB 원본 출력].ExternalColumns[flightEndDate]"
+                      lineageId="Package\데이터 흐름 태스크 1\원본 1 - flight_TBL.Outputs[OLE DB 원본 출력].Columns[flightEndDate]"
+                      name="flightEndDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\데이터 흐름 태스크 1\원본 1 - flight_TBL.Outputs[OLE DB 원본 출력].Columns[flightCost]"
+                      dataType="cy"
+                      errorOrTruncationOperation="변환"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\데이터 흐름 태스크 1\원본 1 - flight_TBL.Outputs[OLE DB 원본 출력].ExternalColumns[flightCost]"
+                      lineageId="Package\데이터 흐름 태스크 1\원본 1 - flight_TBL.Outputs[OLE DB 원본 출력].Columns[flightCost]"
+                      name="flightCost"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\데이터 흐름 태스크 1\원본 1 - flight_TBL.Outputs[OLE DB 원본 출력].Columns[flightNumber]"
+                      codePage="949"
+                      dataType="str"
+                      errorOrTruncationOperation="변환"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\데이터 흐름 태스크 1\원본 1 - flight_TBL.Outputs[OLE DB 원본 출력].ExternalColumns[flightNumber]"
+                      length="10"
+                      lineageId="Package\데이터 흐름 태스크 1\원본 1 - flight_TBL.Outputs[OLE DB 원본 출력].Columns[flightNumber]"
+                      name="flightNumber"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\데이터 흐름 태스크 1\원본 1 - flight_TBL.Outputs[OLE DB 원본 출력].ExternalColumns[memberID]"
+                      codePage="949"
+                      dataType="str"
+                      length="8"
+                      name="memberID" />
+                    <externalMetadataColumn
+                      refId="Package\데이터 흐름 태스크 1\원본 1 - flight_TBL.Outputs[OLE DB 원본 출력].ExternalColumns[flightStartPoint]"
+                      dataType="wstr"
+                      length="10"
+                      name="flightStartPoint" />
+                    <externalMetadataColumn
+                      refId="Package\데이터 흐름 태스크 1\원본 1 - flight_TBL.Outputs[OLE DB 원본 출력].ExternalColumns[flightEndPoint]"
+                      dataType="wstr"
+                      length="10"
+                      name="flightEndPoint" />
+                    <externalMetadataColumn
+                      refId="Package\데이터 흐름 태스크 1\원본 1 - flight_TBL.Outputs[OLE DB 원본 출력].ExternalColumns[flightStartDate]"
+                      dataType="dbTimeStamp"
+                      name="flightStartDate" />
+                    <externalMetadataColumn
+                      refId="Package\데이터 흐름 태스크 1\원본 1 - flight_TBL.Outputs[OLE DB 원본 출력].ExternalColumns[flightEndDate]"
+                      dataType="dbTimeStamp"
+                      name="flightEndDate" />
+                    <externalMetadataColumn
+                      refId="Package\데이터 흐름 태스크 1\원본 1 - flight_TBL.Outputs[OLE DB 원본 출력].ExternalColumns[flightCost]"
+                      dataType="cy"
+                      name="flightCost" />
+                    <externalMetadataColumn
+                      refId="Package\데이터 흐름 태스크 1\원본 1 - flight_TBL.Outputs[OLE DB 원본 출력].ExternalColumns[flightNumber]"
+                      codePage="949"
+                      dataType="str"
+                      length="10"
+                      name="flightNumber" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\데이터 흐름 태스크 1\원본 1 - flight_TBL.Outputs[OLE DB 원본 오류 출력]"
+                  isErrorOut="true"
+                  name="OLE DB 원본 오류 출력">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\데이터 흐름 태스크 1\원본 1 - flight_TBL.Outputs[OLE DB 원본 오류 출력].Columns[memberID]"
+                      codePage="949"
+                      dataType="str"
+                      length="8"
+                      lineageId="Package\데이터 흐름 태스크 1\원본 1 - flight_TBL.Outputs[OLE DB 원본 오류 출력].Columns[memberID]"
+                      name="memberID" />
+                    <outputColumn
+                      refId="Package\데이터 흐름 태스크 1\원본 1 - flight_TBL.Outputs[OLE DB 원본 오류 출력].Columns[flightStartPoint]"
+                      dataType="wstr"
+                      length="10"
+                      lineageId="Package\데이터 흐름 태스크 1\원본 1 - flight_TBL.Outputs[OLE DB 원본 오류 출력].Columns[flightStartPoint]"
+                      name="flightStartPoint" />
+                    <outputColumn
+                      refId="Package\데이터 흐름 태스크 1\원본 1 - flight_TBL.Outputs[OLE DB 원본 오류 출력].Columns[flightEndPoint]"
+                      dataType="wstr"
+                      length="10"
+                      lineageId="Package\데이터 흐름 태스크 1\원본 1 - flight_TBL.Outputs[OLE DB 원본 오류 출력].Columns[flightEndPoint]"
+                      name="flightEndPoint" />
+                    <outputColumn
+                      refId="Package\데이터 흐름 태스크 1\원본 1 - flight_TBL.Outputs[OLE DB 원본 오류 출력].Columns[flightStartDate]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\데이터 흐름 태스크 1\원본 1 - flight_TBL.Outputs[OLE DB 원본 오류 출력].Columns[flightStartDate]"
+                      name="flightStartDate" />
+                    <outputColumn
+                      refId="Package\데이터 흐름 태스크 1\원본 1 - flight_TBL.Outputs[OLE DB 원본 오류 출력].Columns[flightEndDate]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\데이터 흐름 태스크 1\원본 1 - flight_TBL.Outputs[OLE DB 원본 오류 출력].Columns[flightEndDate]"
+                      name="flightEndDate" />
+                    <outputColumn
+                      refId="Package\데이터 흐름 태스크 1\원본 1 - flight_TBL.Outputs[OLE DB 원본 오류 출력].Columns[flightCost]"
+                      dataType="cy"
+                      lineageId="Package\데이터 흐름 태스크 1\원본 1 - flight_TBL.Outputs[OLE DB 원본 오류 출력].Columns[flightCost]"
+                      name="flightCost" />
+                    <outputColumn
+                      refId="Package\데이터 흐름 태스크 1\원본 1 - flight_TBL.Outputs[OLE DB 원본 오류 출력].Columns[flightNumber]"
+                      codePage="949"
+                      dataType="str"
+                      length="10"
+                      lineageId="Package\데이터 흐름 태스크 1\원본 1 - flight_TBL.Outputs[OLE DB 원본 오류 출력].Columns[flightNumber]"
+                      name="flightNumber" />
+                    <outputColumn
+                      refId="Package\데이터 흐름 태스크 1\원본 1 - flight_TBL.Outputs[OLE DB 원본 오류 출력].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\데이터 흐름 태스크 1\원본 1 - flight_TBL.Outputs[OLE DB 원본 오류 출력].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\데이터 흐름 태스크 1\원본 1 - flight_TBL.Outputs[OLE DB 원본 오류 출력].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\데이터 흐름 태스크 1\원본 1 - flight_TBL.Outputs[OLE DB 원본 오류 출력].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\데이터 흐름 태스크 1\원본 2 - member_TBL"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB 원본;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All rights reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB 원본"
+              name="원본 2 - member_TBL"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="명령이 종료되기 전의 제한 시간 값(초)입니다. 값 0은 제한 시간이 없음을 나타냅니다."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="행 집합을 여는 데 사용되는 데이터베이스 개체의 이름을 지정합니다."
+                  name="OpenRowset">[dbo].[member_TBL]</property>
+                <property
+                  dataType="System.String"
+                  description="행 집합을 여는 데 사용되는 데이터베이스 개체의 이름이 들어 있는 변수를 지정합니다."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="실행할 SQL 명령입니다."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="실행할 SQL 명령이 들어 있는 변수입니다."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="데이터 원본에서 코드 페이지 정보를 사용할 수 없을 때 사용할 열 코드 페이지를 지정합니다."
+                  name="DefaultCodePage">949</property>
+                <property
+                  dataType="System.Boolean"
+                  description="문자 데이터를 설명할 때 DefaultCodePage 속성 값을 사용하도록 합니다."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="데이터베이스에 액세스하는 데 사용되는 모드를 지정합니다."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="SQL 명령의 매개 변수와 변수 사이의 매핑입니다."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\데이터 흐름 태스크 1\원본 2 - member_TBL.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[SourceConnectionOLEDB]"
+                  connectionManagerRefId="Package.ConnectionManagers[SourceConnectionOLEDB]"
+                  description="데이터베이스에 액세스하는 데 사용되는 OLE DB 런타임 연결입니다."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\데이터 흐름 태스크 1\원본 2 - member_TBL.Outputs[OLE DB 원본 출력]"
+                  name="OLE DB 원본 출력">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\데이터 흐름 태스크 1\원본 2 - member_TBL.Outputs[OLE DB 원본 출력].Columns[memberID]"
+                      codePage="949"
+                      dataType="str"
+                      errorOrTruncationOperation="변환"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\데이터 흐름 태스크 1\원본 2 - member_TBL.Outputs[OLE DB 원본 출력].ExternalColumns[memberID]"
+                      length="8"
+                      lineageId="Package\데이터 흐름 태스크 1\원본 2 - member_TBL.Outputs[OLE DB 원본 출력].Columns[memberID]"
+                      name="memberID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\데이터 흐름 태스크 1\원본 2 - member_TBL.Outputs[OLE DB 원본 출력].Columns[memberName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="변환"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\데이터 흐름 태스크 1\원본 2 - member_TBL.Outputs[OLE DB 원본 출력].ExternalColumns[memberName]"
+                      length="5"
+                      lineageId="Package\데이터 흐름 태스크 1\원본 2 - member_TBL.Outputs[OLE DB 원본 출력].Columns[memberName]"
+                      name="memberName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\데이터 흐름 태스크 1\원본 2 - member_TBL.Outputs[OLE DB 원본 출력].Columns[memberBirth]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="변환"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\데이터 흐름 태스크 1\원본 2 - member_TBL.Outputs[OLE DB 원본 출력].ExternalColumns[memberBirth]"
+                      lineageId="Package\데이터 흐름 태스크 1\원본 2 - member_TBL.Outputs[OLE DB 원본 출력].Columns[memberBirth]"
+                      name="memberBirth"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\데이터 흐름 태스크 1\원본 2 - member_TBL.Outputs[OLE DB 원본 출력].Columns[memberPhone]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="변환"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\데이터 흐름 태스크 1\원본 2 - member_TBL.Outputs[OLE DB 원본 출력].ExternalColumns[memberPhone]"
+                      length="20"
+                      lineageId="Package\데이터 흐름 태스크 1\원본 2 - member_TBL.Outputs[OLE DB 원본 출력].Columns[memberPhone]"
+                      name="memberPhone"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\데이터 흐름 태스크 1\원본 2 - member_TBL.Outputs[OLE DB 원본 출력].Columns[memberAddress]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="변환"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\데이터 흐름 태스크 1\원본 2 - member_TBL.Outputs[OLE DB 원본 출력].ExternalColumns[memberAddress]"
+                      length="20"
+                      lineageId="Package\데이터 흐름 태스크 1\원본 2 - member_TBL.Outputs[OLE DB 원본 출력].Columns[memberAddress]"
+                      name="memberAddress"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\데이터 흐름 태스크 1\원본 2 - member_TBL.Outputs[OLE DB 원본 출력].ExternalColumns[memberID]"
+                      codePage="949"
+                      dataType="str"
+                      length="8"
+                      name="memberID" />
+                    <externalMetadataColumn
+                      refId="Package\데이터 흐름 태스크 1\원본 2 - member_TBL.Outputs[OLE DB 원본 출력].ExternalColumns[memberName]"
+                      dataType="wstr"
+                      length="5"
+                      name="memberName" />
+                    <externalMetadataColumn
+                      refId="Package\데이터 흐름 태스크 1\원본 2 - member_TBL.Outputs[OLE DB 원본 출력].ExternalColumns[memberBirth]"
+                      dataType="dbDate"
+                      name="memberBirth" />
+                    <externalMetadataColumn
+                      refId="Package\데이터 흐름 태스크 1\원본 2 - member_TBL.Outputs[OLE DB 원본 출력].ExternalColumns[memberPhone]"
+                      dataType="wstr"
+                      length="20"
+                      name="memberPhone" />
+                    <externalMetadataColumn
+                      refId="Package\데이터 흐름 태스크 1\원본 2 - member_TBL.Outputs[OLE DB 원본 출력].ExternalColumns[memberAddress]"
+                      dataType="wstr"
+                      length="20"
+                      name="memberAddress" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\데이터 흐름 태스크 1\원본 2 - member_TBL.Outputs[OLE DB 원본 오류 출력]"
+                  isErrorOut="true"
+                  name="OLE DB 원본 오류 출력">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\데이터 흐름 태스크 1\원본 2 - member_TBL.Outputs[OLE DB 원본 오류 출력].Columns[memberID]"
+                      codePage="949"
+                      dataType="str"
+                      length="8"
+                      lineageId="Package\데이터 흐름 태스크 1\원본 2 - member_TBL.Outputs[OLE DB 원본 오류 출력].Columns[memberID]"
+                      name="memberID" />
+                    <outputColumn
+                      refId="Package\데이터 흐름 태스크 1\원본 2 - member_TBL.Outputs[OLE DB 원본 오류 출력].Columns[memberName]"
+                      dataType="wstr"
+                      length="5"
+                      lineageId="Package\데이터 흐름 태스크 1\원본 2 - member_TBL.Outputs[OLE DB 원본 오류 출력].Columns[memberName]"
+                      name="memberName" />
+                    <outputColumn
+                      refId="Package\데이터 흐름 태스크 1\원본 2 - member_TBL.Outputs[OLE DB 원본 오류 출력].Columns[memberBirth]"
+                      dataType="dbDate"
+                      lineageId="Package\데이터 흐름 태스크 1\원본 2 - member_TBL.Outputs[OLE DB 원본 오류 출력].Columns[memberBirth]"
+                      name="memberBirth" />
+                    <outputColumn
+                      refId="Package\데이터 흐름 태스크 1\원본 2 - member_TBL.Outputs[OLE DB 원본 오류 출력].Columns[memberPhone]"
+                      dataType="wstr"
+                      length="20"
+                      lineageId="Package\데이터 흐름 태스크 1\원본 2 - member_TBL.Outputs[OLE DB 원본 오류 출력].Columns[memberPhone]"
+                      name="memberPhone" />
+                    <outputColumn
+                      refId="Package\데이터 흐름 태스크 1\원본 2 - member_TBL.Outputs[OLE DB 원본 오류 출력].Columns[memberAddress]"
+                      dataType="wstr"
+                      length="20"
+                      lineageId="Package\데이터 흐름 태스크 1\원본 2 - member_TBL.Outputs[OLE DB 원본 오류 출력].Columns[memberAddress]"
+                      name="memberAddress" />
+                    <outputColumn
+                      refId="Package\데이터 흐름 태스크 1\원본 2 - member_TBL.Outputs[OLE DB 원본 오류 출력].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\데이터 흐름 태스크 1\원본 2 - member_TBL.Outputs[OLE DB 원본 오류 출력].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\데이터 흐름 태스크 1\원본 2 - member_TBL.Outputs[OLE DB 원본 오류 출력].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\데이터 흐름 태스크 1\원본 2 - member_TBL.Outputs[OLE DB 원본 오류 출력].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\데이터 흐름 태스크 1\원본 3 - seat_TBL"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB 원본;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All rights reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB 원본"
+              name="원본 3 - seat_TBL"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="명령이 종료되기 전의 제한 시간 값(초)입니다. 값 0은 제한 시간이 없음을 나타냅니다."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="행 집합을 여는 데 사용되는 데이터베이스 개체의 이름을 지정합니다."
+                  name="OpenRowset">[dbo].[seat_TBL]</property>
+                <property
+                  dataType="System.String"
+                  description="행 집합을 여는 데 사용되는 데이터베이스 개체의 이름이 들어 있는 변수를 지정합니다."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="실행할 SQL 명령입니다."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="실행할 SQL 명령이 들어 있는 변수입니다."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="데이터 원본에서 코드 페이지 정보를 사용할 수 없을 때 사용할 열 코드 페이지를 지정합니다."
+                  name="DefaultCodePage">949</property>
+                <property
+                  dataType="System.Boolean"
+                  description="문자 데이터를 설명할 때 DefaultCodePage 속성 값을 사용하도록 합니다."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="데이터베이스에 액세스하는 데 사용되는 모드를 지정합니다."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="SQL 명령의 매개 변수와 변수 사이의 매핑입니다."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\데이터 흐름 태스크 1\원본 3 - seat_TBL.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[SourceConnectionOLEDB]"
+                  connectionManagerRefId="Package.ConnectionManagers[SourceConnectionOLEDB]"
+                  description="데이터베이스에 액세스하는 데 사용되는 OLE DB 런타임 연결입니다."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\데이터 흐름 태스크 1\원본 3 - seat_TBL.Outputs[OLE DB 원본 출력]"
+                  name="OLE DB 원본 출력">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\데이터 흐름 태스크 1\원본 3 - seat_TBL.Outputs[OLE DB 원본 출력].Columns[airplaneNumber]"
+                      codePage="949"
+                      dataType="str"
+                      errorOrTruncationOperation="변환"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\데이터 흐름 태스크 1\원본 3 - seat_TBL.Outputs[OLE DB 원본 출력].ExternalColumns[airplaneNumber]"
+                      length="10"
+                      lineageId="Package\데이터 흐름 태스크 1\원본 3 - seat_TBL.Outputs[OLE DB 원본 출력].Columns[airplaneNumber]"
+                      name="airplaneNumber"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\데이터 흐름 태스크 1\원본 3 - seat_TBL.Outputs[OLE DB 원본 출력].Columns[seatGrade]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="변환"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\데이터 흐름 태스크 1\원본 3 - seat_TBL.Outputs[OLE DB 원본 출력].ExternalColumns[seatGrade]"
+                      length="2"
+                      lineageId="Package\데이터 흐름 태스크 1\원본 3 - seat_TBL.Outputs[OLE DB 원본 출력].Columns[seatGrade]"
+                      name="seatGrade"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\데이터 흐름 태스크 1\원본 3 - seat_TBL.Outputs[OLE DB 원본 출력].Columns[seatCost]"
+                      dataType="cy"
+                      errorOrTruncationOperation="변환"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\데이터 흐름 태스크 1\원본 3 - seat_TBL.Outputs[OLE DB 원본 출력].ExternalColumns[seatCost]"
+                      lineageId="Package\데이터 흐름 태스크 1\원본 3 - seat_TBL.Outputs[OLE DB 원본 출력].Columns[seatCost]"
+                      name="seatCost"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\데이터 흐름 태스크 1\원본 3 - seat_TBL.Outputs[OLE DB 원본 출력].Columns[seatNumber]"
+                      codePage="949"
+                      dataType="str"
+                      errorOrTruncationOperation="변환"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\데이터 흐름 태스크 1\원본 3 - seat_TBL.Outputs[OLE DB 원본 출력].ExternalColumns[seatNumber]"
+                      length="10"
+                      lineageId="Package\데이터 흐름 태스크 1\원본 3 - seat_TBL.Outputs[OLE DB 원본 출력].Columns[seatNumber]"
+                      name="seatNumber"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\데이터 흐름 태스크 1\원본 3 - seat_TBL.Outputs[OLE DB 원본 출력].ExternalColumns[airplaneNumber]"
+                      codePage="949"
+                      dataType="str"
+                      length="10"
+                      name="airplaneNumber" />
+                    <externalMetadataColumn
+                      refId="Package\데이터 흐름 태스크 1\원본 3 - seat_TBL.Outputs[OLE DB 원본 출력].ExternalColumns[seatGrade]"
+                      dataType="wstr"
+                      length="2"
+                      name="seatGrade" />
+                    <externalMetadataColumn
+                      refId="Package\데이터 흐름 태스크 1\원본 3 - seat_TBL.Outputs[OLE DB 원본 출력].ExternalColumns[seatCost]"
+                      dataType="cy"
+                      name="seatCost" />
+                    <externalMetadataColumn
+                      refId="Package\데이터 흐름 태스크 1\원본 3 - seat_TBL.Outputs[OLE DB 원본 출력].ExternalColumns[seatNumber]"
+                      codePage="949"
+                      dataType="str"
+                      length="10"
+                      name="seatNumber" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\데이터 흐름 태스크 1\원본 3 - seat_TBL.Outputs[OLE DB 원본 오류 출력]"
+                  isErrorOut="true"
+                  name="OLE DB 원본 오류 출력">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\데이터 흐름 태스크 1\원본 3 - seat_TBL.Outputs[OLE DB 원본 오류 출력].Columns[airplaneNumber]"
+                      codePage="949"
+                      dataType="str"
+                      length="10"
+                      lineageId="Package\데이터 흐름 태스크 1\원본 3 - seat_TBL.Outputs[OLE DB 원본 오류 출력].Columns[airplaneNumber]"
+                      name="airplaneNumber" />
+                    <outputColumn
+                      refId="Package\데이터 흐름 태스크 1\원본 3 - seat_TBL.Outputs[OLE DB 원본 오류 출력].Columns[seatGrade]"
+                      dataType="wstr"
+                      length="2"
+                      lineageId="Package\데이터 흐름 태스크 1\원본 3 - seat_TBL.Outputs[OLE DB 원본 오류 출력].Columns[seatGrade]"
+                      name="seatGrade" />
+                    <outputColumn
+                      refId="Package\데이터 흐름 태스크 1\원본 3 - seat_TBL.Outputs[OLE DB 원본 오류 출력].Columns[seatCost]"
+                      dataType="cy"
+                      lineageId="Package\데이터 흐름 태스크 1\원본 3 - seat_TBL.Outputs[OLE DB 원본 오류 출력].Columns[seatCost]"
+                      name="seatCost" />
+                    <outputColumn
+                      refId="Package\데이터 흐름 태스크 1\원본 3 - seat_TBL.Outputs[OLE DB 원본 오류 출력].Columns[seatNumber]"
+                      codePage="949"
+                      dataType="str"
+                      length="10"
+                      lineageId="Package\데이터 흐름 태스크 1\원본 3 - seat_TBL.Outputs[OLE DB 원본 오류 출력].Columns[seatNumber]"
+                      name="seatNumber" />
+                    <outputColumn
+                      refId="Package\데이터 흐름 태스크 1\원본 3 - seat_TBL.Outputs[OLE DB 원본 오류 출력].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\데이터 흐름 태스크 1\원본 3 - seat_TBL.Outputs[OLE DB 원본 오류 출력].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\데이터 흐름 태스크 1\원본 3 - seat_TBL.Outputs[OLE DB 원본 오류 출력].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\데이터 흐름 태스크 1\원본 3 - seat_TBL.Outputs[OLE DB 원본 오류 출력].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\데이터 흐름 태스크 1\원본 4 - sysdiagrams"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB 원본;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All rights reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB 원본"
+              name="원본 4 - sysdiagrams"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="명령이 종료되기 전의 제한 시간 값(초)입니다. 값 0은 제한 시간이 없음을 나타냅니다."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="행 집합을 여는 데 사용되는 데이터베이스 개체의 이름을 지정합니다."
+                  name="OpenRowset">[dbo].[sysdiagrams]</property>
+                <property
+                  dataType="System.String"
+                  description="행 집합을 여는 데 사용되는 데이터베이스 개체의 이름이 들어 있는 변수를 지정합니다."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="실행할 SQL 명령입니다."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="실행할 SQL 명령이 들어 있는 변수입니다."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="데이터 원본에서 코드 페이지 정보를 사용할 수 없을 때 사용할 열 코드 페이지를 지정합니다."
+                  name="DefaultCodePage">949</property>
+                <property
+                  dataType="System.Boolean"
+                  description="문자 데이터를 설명할 때 DefaultCodePage 속성 값을 사용하도록 합니다."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="데이터베이스에 액세스하는 데 사용되는 모드를 지정합니다."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="SQL 명령의 매개 변수와 변수 사이의 매핑입니다."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\데이터 흐름 태스크 1\원본 4 - sysdiagrams.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[SourceConnectionOLEDB]"
+                  connectionManagerRefId="Package.ConnectionManagers[SourceConnectionOLEDB]"
+                  description="데이터베이스에 액세스하는 데 사용되는 OLE DB 런타임 연결입니다."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\데이터 흐름 태스크 1\원본 4 - sysdiagrams.Outputs[OLE DB 원본 출력]"
+                  name="OLE DB 원본 출력">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\데이터 흐름 태스크 1\원본 4 - sysdiagrams.Outputs[OLE DB 원본 출력].Columns[name]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="변환"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\데이터 흐름 태스크 1\원본 4 - sysdiagrams.Outputs[OLE DB 원본 출력].ExternalColumns[name]"
+                      length="128"
+                      lineageId="Package\데이터 흐름 태스크 1\원본 4 - sysdiagrams.Outputs[OLE DB 원본 출력].Columns[name]"
+                      name="name"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\데이터 흐름 태스크 1\원본 4 - sysdiagrams.Outputs[OLE DB 원본 출력].Columns[principal_id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="변환"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\데이터 흐름 태스크 1\원본 4 - sysdiagrams.Outputs[OLE DB 원본 출력].ExternalColumns[principal_id]"
+                      lineageId="Package\데이터 흐름 태스크 1\원본 4 - sysdiagrams.Outputs[OLE DB 원본 출력].Columns[principal_id]"
+                      name="principal_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\데이터 흐름 태스크 1\원본 4 - sysdiagrams.Outputs[OLE DB 원본 출력].Columns[diagram_id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="변환"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\데이터 흐름 태스크 1\원본 4 - sysdiagrams.Outputs[OLE DB 원본 출력].ExternalColumns[diagram_id]"
+                      lineageId="Package\데이터 흐름 태스크 1\원본 4 - sysdiagrams.Outputs[OLE DB 원본 출력].Columns[diagram_id]"
+                      name="diagram_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\데이터 흐름 태스크 1\원본 4 - sysdiagrams.Outputs[OLE DB 원본 출력].Columns[version]"
+                      dataType="i4"
+                      errorOrTruncationOperation="변환"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\데이터 흐름 태스크 1\원본 4 - sysdiagrams.Outputs[OLE DB 원본 출력].ExternalColumns[version]"
+                      lineageId="Package\데이터 흐름 태스크 1\원본 4 - sysdiagrams.Outputs[OLE DB 원본 출력].Columns[version]"
+                      name="version"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\데이터 흐름 태스크 1\원본 4 - sysdiagrams.Outputs[OLE DB 원본 출력].Columns[definition]"
+                      dataType="image"
+                      errorOrTruncationOperation="변환"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\데이터 흐름 태스크 1\원본 4 - sysdiagrams.Outputs[OLE DB 원본 출력].ExternalColumns[definition]"
+                      lineageId="Package\데이터 흐름 태스크 1\원본 4 - sysdiagrams.Outputs[OLE DB 원본 출력].Columns[definition]"
+                      name="definition"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\데이터 흐름 태스크 1\원본 4 - sysdiagrams.Outputs[OLE DB 원본 출력].ExternalColumns[name]"
+                      dataType="wstr"
+                      length="128"
+                      name="name" />
+                    <externalMetadataColumn
+                      refId="Package\데이터 흐름 태스크 1\원본 4 - sysdiagrams.Outputs[OLE DB 원본 출력].ExternalColumns[principal_id]"
+                      dataType="i4"
+                      name="principal_id" />
+                    <externalMetadataColumn
+                      refId="Package\데이터 흐름 태스크 1\원본 4 - sysdiagrams.Outputs[OLE DB 원본 출력].ExternalColumns[diagram_id]"
+                      dataType="i4"
+                      name="diagram_id" />
+                    <externalMetadataColumn
+                      refId="Package\데이터 흐름 태스크 1\원본 4 - sysdiagrams.Outputs[OLE DB 원본 출력].ExternalColumns[version]"
+                      dataType="i4"
+                      name="version" />
+                    <externalMetadataColumn
+                      refId="Package\데이터 흐름 태스크 1\원본 4 - sysdiagrams.Outputs[OLE DB 원본 출력].ExternalColumns[definition]"
+                      dataType="image"
+                      name="definition" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\데이터 흐름 태스크 1\원본 4 - sysdiagrams.Outputs[OLE DB 원본 오류 출력]"
+                  isErrorOut="true"
+                  name="OLE DB 원본 오류 출력">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\데이터 흐름 태스크 1\원본 4 - sysdiagrams.Outputs[OLE DB 원본 오류 출력].Columns[name]"
+                      dataType="wstr"
+                      length="128"
+                      lineageId="Package\데이터 흐름 태스크 1\원본 4 - sysdiagrams.Outputs[OLE DB 원본 오류 출력].Columns[name]"
+                      name="name" />
+                    <outputColumn
+                      refId="Package\데이터 흐름 태스크 1\원본 4 - sysdiagrams.Outputs[OLE DB 원본 오류 출력].Columns[principal_id]"
+                      dataType="i4"
+                      lineageId="Package\데이터 흐름 태스크 1\원본 4 - sysdiagrams.Outputs[OLE DB 원본 오류 출력].Columns[principal_id]"
+                      name="principal_id" />
+                    <outputColumn
+                      refId="Package\데이터 흐름 태스크 1\원본 4 - sysdiagrams.Outputs[OLE DB 원본 오류 출력].Columns[diagram_id]"
+                      dataType="i4"
+                      lineageId="Package\데이터 흐름 태스크 1\원본 4 - sysdiagrams.Outputs[OLE DB 원본 오류 출력].Columns[diagram_id]"
+                      name="diagram_id" />
+                    <outputColumn
+                      refId="Package\데이터 흐름 태스크 1\원본 4 - sysdiagrams.Outputs[OLE DB 원본 오류 출력].Columns[version]"
+                      dataType="i4"
+                      lineageId="Package\데이터 흐름 태스크 1\원본 4 - sysdiagrams.Outputs[OLE DB 원본 오류 출력].Columns[version]"
+                      name="version" />
+                    <outputColumn
+                      refId="Package\데이터 흐름 태스크 1\원본 4 - sysdiagrams.Outputs[OLE DB 원본 오류 출력].Columns[definition]"
+                      dataType="image"
+                      lineageId="Package\데이터 흐름 태스크 1\원본 4 - sysdiagrams.Outputs[OLE DB 원본 오류 출력].Columns[definition]"
+                      name="definition" />
+                    <outputColumn
+                      refId="Package\데이터 흐름 태스크 1\원본 4 - sysdiagrams.Outputs[OLE DB 원본 오류 출력].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\데이터 흐름 태스크 1\원본 4 - sysdiagrams.Outputs[OLE DB 원본 오류 출력].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\데이터 흐름 태스크 1\원본 4 - sysdiagrams.Outputs[OLE DB 원본 오류 출력].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\데이터 흐름 태스크 1\원본 4 - sysdiagrams.Outputs[OLE DB 원본 오류 출력].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\데이터 흐름 태스크 1.Paths[OLE DB 원본 출력]"
+              endId="Package\데이터 흐름 태스크 1\대상 - airplane_TBL.Inputs[Destination Input]"
+              name="OLE DB 원본 출력"
+              startId="Package\데이터 흐름 태스크 1\원본 - airplane_TBL.Outputs[OLE DB 원본 출력]" />
+            <path
+              refId="Package\데이터 흐름 태스크 1.Paths[OLE DB 원본 출력1]"
+              endId="Package\데이터 흐름 태스크 1\대상 1 - flight_TBL.Inputs[Destination Input]"
+              name="OLE DB 원본 출력"
+              startId="Package\데이터 흐름 태스크 1\원본 1 - flight_TBL.Outputs[OLE DB 원본 출력]" />
+            <path
+              refId="Package\데이터 흐름 태스크 1.Paths[OLE DB 원본 출력2]"
+              endId="Package\데이터 흐름 태스크 1\대상 2 - member_TBL.Inputs[Destination Input]"
+              name="OLE DB 원본 출력"
+              startId="Package\데이터 흐름 태스크 1\원본 2 - member_TBL.Outputs[OLE DB 원본 출력]" />
+            <path
+              refId="Package\데이터 흐름 태스크 1.Paths[OLE DB 원본 출력3]"
+              endId="Package\데이터 흐름 태스크 1\대상 3 - seat_TBL.Inputs[Destination Input]"
+              name="OLE DB 원본 출력"
+              startId="Package\데이터 흐름 태스크 1\원본 3 - seat_TBL.Outputs[OLE DB 원본 출력]" />
+            <path
+              refId="Package\데이터 흐름 태스크 1.Paths[OLE DB 원본 출력4]"
+              endId="Package\데이터 흐름 태스크 1\대상 4 - sysdiagrams.Inputs[Destination Input]"
+              name="OLE DB 원본 출력"
+              startId="Package\데이터 흐름 태스크 1\원본 4 - sysdiagrams.Outputs[OLE DB 원본 출력]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\데이터 흐름 태스크 2"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:DelayValidation="True"
+      DTS:DTSID="{99C6B2BA-A003-4ADC-A59A-2F041955BE4A}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:FailPackageOnFailure="True"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="데이터 흐름 태스크 2"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          defaultBufferSize="3145728"
+          version="1">
+          <components>
+            <component
+              refId="Package\데이터 흐름 태스크 2\대상 5 - 예약현황메인키"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB 대상;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All rights reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB 대상"
+              name="대상 5 - 예약현황메인키"
+              usesDispositions="true"
+              validateExternalMetadata="False"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="명령이 종료되기 전의 제한 시간 값(초)입니다. 값 0은 제한 시간이 없음을 나타냅니다."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="행 집합을 여는 데 사용되는 데이터베이스 개체의 이름을 지정합니다."
+                  name="OpenRowset">[dbo].[예약현황메인키]</property>
+                <property
+                  dataType="System.String"
+                  description="행 집합을 여는 데 사용되는 데이터베이스 개체의 이름이 들어 있는 변수를 지정합니다."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="실행할 SQL 명령입니다."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="데이터 원본에서 코드 페이지 정보를 사용할 수 없을 때 사용할 열 코드 페이지를 지정합니다."
+                  name="DefaultCodePage">949</property>
+                <property
+                  dataType="System.Boolean"
+                  description="문자 데이터를 설명할 때 DefaultCodePage 속성 값을 사용하도록 합니다."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="데이터베이스에 액세스하는 데 사용되는 모드를 지정합니다."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="ID 열에 제공된 값을 대상에 복사할지 여부를 나타냅니다. false인 경우 ID 열의 값이 대상에서 자동 생성됩니다. 빠른 로드를 사용하는 경우에만 적용됩니다."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Null 포함 열을 대상에 Null로 삽입할지 여부를 나타냅니다. false인 경우 Null 포함 열은 지정된 기본값으로 대상에 삽입됩니다. 빠른 로드를 사용하는 경우에만 적용됩니다."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="빠른 로드와 함께 사용할 옵션을 지정합니다. 빠른 로드를 사용하는 경우에만 적용됩니다."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="데이터 삽입 도중 커밋이 수행되는 시점을 지정합니다. 값을 0으로 지정하면 데이터 삽입 완료 시에 커밋이 한 번 수행됩니다. 빠른 로드를 사용하는 경우에만 적용됩니다."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\데이터 흐름 태스크 2\대상 5 - 예약현황메인키.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DestinationConnectionOLEDB]"
+                  connectionManagerRefId="Package.ConnectionManagers[DestinationConnectionOLEDB]"
+                  description="데이터베이스에 액세스하는 데 사용되는 OLE DB 런타임 연결입니다."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\데이터 흐름 태스크 2\대상 5 - 예약현황메인키.Inputs[Destination Input]"
+                  errorOrTruncationOperation="삽입"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\데이터 흐름 태스크 2\대상 5 - 예약현황메인키.Inputs[Destination Input].Columns[memberID]"
+                      cachedCodepage="949"
+                      cachedDataType="str"
+                      cachedLength="8"
+                      cachedName="memberID"
+                      externalMetadataColumnId="Package\데이터 흐름 태스크 2\대상 5 - 예약현황메인키.Inputs[Destination Input].ExternalColumns[memberID]"
+                      lineageId="Package\데이터 흐름 태스크 2\원본 5 - 예약현황메인키.Outputs[OLE DB 원본 출력].Columns[memberID]" />
+                    <inputColumn
+                      refId="Package\데이터 흐름 태스크 2\대상 5 - 예약현황메인키.Inputs[Destination Input].Columns[flightNumber]"
+                      cachedCodepage="949"
+                      cachedDataType="str"
+                      cachedLength="10"
+                      cachedName="flightNumber"
+                      externalMetadataColumnId="Package\데이터 흐름 태스크 2\대상 5 - 예약현황메인키.Inputs[Destination Input].ExternalColumns[flightNumber]"
+                      lineageId="Package\데이터 흐름 태스크 2\원본 5 - 예약현황메인키.Outputs[OLE DB 원본 출력].Columns[flightNumber]" />
+                    <inputColumn
+                      refId="Package\데이터 흐름 태스크 2\대상 5 - 예약현황메인키.Inputs[Destination Input].Columns[airplaneNumber]"
+                      cachedCodepage="949"
+                      cachedDataType="str"
+                      cachedLength="10"
+                      cachedName="airplaneNumber"
+                      externalMetadataColumnId="Package\데이터 흐름 태스크 2\대상 5 - 예약현황메인키.Inputs[Destination Input].ExternalColumns[airplaneNumber]"
+                      lineageId="Package\데이터 흐름 태스크 2\원본 5 - 예약현황메인키.Outputs[OLE DB 원본 출력].Columns[airplaneNumber]" />
+                    <inputColumn
+                      refId="Package\데이터 흐름 태스크 2\대상 5 - 예약현황메인키.Inputs[Destination Input].Columns[seatNumber]"
+                      cachedCodepage="949"
+                      cachedDataType="str"
+                      cachedLength="10"
+                      cachedName="seatNumber"
+                      externalMetadataColumnId="Package\데이터 흐름 태스크 2\대상 5 - 예약현황메인키.Inputs[Destination Input].ExternalColumns[seatNumber]"
+                      lineageId="Package\데이터 흐름 태스크 2\원본 5 - 예약현황메인키.Outputs[OLE DB 원본 출력].Columns[seatNumber]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\데이터 흐름 태스크 2\대상 5 - 예약현황메인키.Inputs[Destination Input].ExternalColumns[memberID]"
+                      codePage="949"
+                      dataType="str"
+                      length="8"
+                      name="memberID" />
+                    <externalMetadataColumn
+                      refId="Package\데이터 흐름 태스크 2\대상 5 - 예약현황메인키.Inputs[Destination Input].ExternalColumns[flightNumber]"
+                      codePage="949"
+                      dataType="str"
+                      length="10"
+                      name="flightNumber" />
+                    <externalMetadataColumn
+                      refId="Package\데이터 흐름 태스크 2\대상 5 - 예약현황메인키.Inputs[Destination Input].ExternalColumns[airplaneNumber]"
+                      codePage="949"
+                      dataType="str"
+                      length="10"
+                      name="airplaneNumber" />
+                    <externalMetadataColumn
+                      refId="Package\데이터 흐름 태스크 2\대상 5 - 예약현황메인키.Inputs[Destination Input].ExternalColumns[seatNumber]"
+                      codePage="949"
+                      dataType="str"
+                      length="10"
+                      name="seatNumber" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\데이터 흐름 태스크 2\대상 5 - 예약현황메인키.Outputs[OLE DB 대상 오류 출력]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB 대상 오류 출력"
+                  synchronousInputId="Package\데이터 흐름 태스크 2\대상 5 - 예약현황메인키.Inputs[Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\데이터 흐름 태스크 2\대상 5 - 예약현황메인키.Outputs[OLE DB 대상 오류 출력].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\데이터 흐름 태스크 2\대상 5 - 예약현황메인키.Outputs[OLE DB 대상 오류 출력].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\데이터 흐름 태스크 2\대상 5 - 예약현황메인키.Outputs[OLE DB 대상 오류 출력].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\데이터 흐름 태스크 2\대상 5 - 예약현황메인키.Outputs[OLE DB 대상 오류 출력].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\데이터 흐름 태스크 2\대상 6 - 이름아이디"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB 대상;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All rights reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB 대상"
+              name="대상 6 - 이름아이디"
+              usesDispositions="true"
+              validateExternalMetadata="False"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="명령이 종료되기 전의 제한 시간 값(초)입니다. 값 0은 제한 시간이 없음을 나타냅니다."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="행 집합을 여는 데 사용되는 데이터베이스 개체의 이름을 지정합니다."
+                  name="OpenRowset">[dbo].[이름아이디]</property>
+                <property
+                  dataType="System.String"
+                  description="행 집합을 여는 데 사용되는 데이터베이스 개체의 이름이 들어 있는 변수를 지정합니다."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="실행할 SQL 명령입니다."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="데이터 원본에서 코드 페이지 정보를 사용할 수 없을 때 사용할 열 코드 페이지를 지정합니다."
+                  name="DefaultCodePage">949</property>
+                <property
+                  dataType="System.Boolean"
+                  description="문자 데이터를 설명할 때 DefaultCodePage 속성 값을 사용하도록 합니다."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="데이터베이스에 액세스하는 데 사용되는 모드를 지정합니다."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="ID 열에 제공된 값을 대상에 복사할지 여부를 나타냅니다. false인 경우 ID 열의 값이 대상에서 자동 생성됩니다. 빠른 로드를 사용하는 경우에만 적용됩니다."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Null 포함 열을 대상에 Null로 삽입할지 여부를 나타냅니다. false인 경우 Null 포함 열은 지정된 기본값으로 대상에 삽입됩니다. 빠른 로드를 사용하는 경우에만 적용됩니다."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="빠른 로드와 함께 사용할 옵션을 지정합니다. 빠른 로드를 사용하는 경우에만 적용됩니다."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="데이터 삽입 도중 커밋이 수행되는 시점을 지정합니다. 값을 0으로 지정하면 데이터 삽입 완료 시에 커밋이 한 번 수행됩니다. 빠른 로드를 사용하는 경우에만 적용됩니다."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\데이터 흐름 태스크 2\대상 6 - 이름아이디.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DestinationConnectionOLEDB]"
+                  connectionManagerRefId="Package.ConnectionManagers[DestinationConnectionOLEDB]"
+                  description="데이터베이스에 액세스하는 데 사용되는 OLE DB 런타임 연결입니다."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\데이터 흐름 태스크 2\대상 6 - 이름아이디.Inputs[Destination Input]"
+                  errorOrTruncationOperation="삽입"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\데이터 흐름 태스크 2\대상 6 - 이름아이디.Inputs[Destination Input].Columns[memberID]"
+                      cachedCodepage="949"
+                      cachedDataType="str"
+                      cachedLength="8"
+                      cachedName="memberID"
+                      externalMetadataColumnId="Package\데이터 흐름 태스크 2\대상 6 - 이름아이디.Inputs[Destination Input].ExternalColumns[memberID]"
+                      lineageId="Package\데이터 흐름 태스크 2\원본 6 - 이름아이디.Outputs[OLE DB 원본 출력].Columns[memberID]" />
+                    <inputColumn
+                      refId="Package\데이터 흐름 태스크 2\대상 6 - 이름아이디.Inputs[Destination Input].Columns[memberName]"
+                      cachedDataType="wstr"
+                      cachedLength="5"
+                      cachedName="memberName"
+                      externalMetadataColumnId="Package\데이터 흐름 태스크 2\대상 6 - 이름아이디.Inputs[Destination Input].ExternalColumns[memberName]"
+                      lineageId="Package\데이터 흐름 태스크 2\원본 6 - 이름아이디.Outputs[OLE DB 원본 출력].Columns[memberName]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\데이터 흐름 태스크 2\대상 6 - 이름아이디.Inputs[Destination Input].ExternalColumns[memberID]"
+                      codePage="949"
+                      dataType="str"
+                      length="8"
+                      name="memberID" />
+                    <externalMetadataColumn
+                      refId="Package\데이터 흐름 태스크 2\대상 6 - 이름아이디.Inputs[Destination Input].ExternalColumns[memberName]"
+                      dataType="wstr"
+                      length="5"
+                      name="memberName" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\데이터 흐름 태스크 2\대상 6 - 이름아이디.Outputs[OLE DB 대상 오류 출력]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB 대상 오류 출력"
+                  synchronousInputId="Package\데이터 흐름 태스크 2\대상 6 - 이름아이디.Inputs[Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\데이터 흐름 태스크 2\대상 6 - 이름아이디.Outputs[OLE DB 대상 오류 출력].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\데이터 흐름 태스크 2\대상 6 - 이름아이디.Outputs[OLE DB 대상 오류 출력].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\데이터 흐름 태스크 2\대상 6 - 이름아이디.Outputs[OLE DB 대상 오류 출력].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\데이터 흐름 태스크 2\대상 6 - 이름아이디.Outputs[OLE DB 대상 오류 출력].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\데이터 흐름 태스크 2\대상 7 - 총합가격"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB 대상;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All rights reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB 대상"
+              name="대상 7 - 총합가격"
+              usesDispositions="true"
+              validateExternalMetadata="False"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="명령이 종료되기 전의 제한 시간 값(초)입니다. 값 0은 제한 시간이 없음을 나타냅니다."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="행 집합을 여는 데 사용되는 데이터베이스 개체의 이름을 지정합니다."
+                  name="OpenRowset">[dbo].[총합가격]</property>
+                <property
+                  dataType="System.String"
+                  description="행 집합을 여는 데 사용되는 데이터베이스 개체의 이름이 들어 있는 변수를 지정합니다."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="실행할 SQL 명령입니다."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="데이터 원본에서 코드 페이지 정보를 사용할 수 없을 때 사용할 열 코드 페이지를 지정합니다."
+                  name="DefaultCodePage">949</property>
+                <property
+                  dataType="System.Boolean"
+                  description="문자 데이터를 설명할 때 DefaultCodePage 속성 값을 사용하도록 합니다."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="데이터베이스에 액세스하는 데 사용되는 모드를 지정합니다."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="ID 열에 제공된 값을 대상에 복사할지 여부를 나타냅니다. false인 경우 ID 열의 값이 대상에서 자동 생성됩니다. 빠른 로드를 사용하는 경우에만 적용됩니다."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Null 포함 열을 대상에 Null로 삽입할지 여부를 나타냅니다. false인 경우 Null 포함 열은 지정된 기본값으로 대상에 삽입됩니다. 빠른 로드를 사용하는 경우에만 적용됩니다."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="빠른 로드와 함께 사용할 옵션을 지정합니다. 빠른 로드를 사용하는 경우에만 적용됩니다."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="데이터 삽입 도중 커밋이 수행되는 시점을 지정합니다. 값을 0으로 지정하면 데이터 삽입 완료 시에 커밋이 한 번 수행됩니다. 빠른 로드를 사용하는 경우에만 적용됩니다."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\데이터 흐름 태스크 2\대상 7 - 총합가격.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DestinationConnectionOLEDB]"
+                  connectionManagerRefId="Package.ConnectionManagers[DestinationConnectionOLEDB]"
+                  description="데이터베이스에 액세스하는 데 사용되는 OLE DB 런타임 연결입니다."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\데이터 흐름 태스크 2\대상 7 - 총합가격.Inputs[Destination Input]"
+                  errorOrTruncationOperation="삽입"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\데이터 흐름 태스크 2\대상 7 - 총합가격.Inputs[Destination Input].Columns[memberID]"
+                      cachedCodepage="949"
+                      cachedDataType="str"
+                      cachedLength="8"
+                      cachedName="memberID"
+                      externalMetadataColumnId="Package\데이터 흐름 태스크 2\대상 7 - 총합가격.Inputs[Destination Input].ExternalColumns[memberID]"
+                      lineageId="Package\데이터 흐름 태스크 2\원본 7 - 총합가격.Outputs[OLE DB 원본 출력].Columns[memberID]" />
+                    <inputColumn
+                      refId="Package\데이터 흐름 태스크 2\대상 7 - 총합가격.Inputs[Destination Input].Columns[flightCost]"
+                      cachedDataType="cy"
+                      cachedName="flightCost"
+                      externalMetadataColumnId="Package\데이터 흐름 태스크 2\대상 7 - 총합가격.Inputs[Destination Input].ExternalColumns[flightCost]"
+                      lineageId="Package\데이터 흐름 태스크 2\원본 7 - 총합가격.Outputs[OLE DB 원본 출력].Columns[flightCost]" />
+                    <inputColumn
+                      refId="Package\데이터 흐름 태스크 2\대상 7 - 총합가격.Inputs[Destination Input].Columns[airplaneCost]"
+                      cachedDataType="cy"
+                      cachedName="airplaneCost"
+                      externalMetadataColumnId="Package\데이터 흐름 태스크 2\대상 7 - 총합가격.Inputs[Destination Input].ExternalColumns[airplaneCost]"
+                      lineageId="Package\데이터 흐름 태스크 2\원본 7 - 총합가격.Outputs[OLE DB 원본 출력].Columns[airplaneCost]" />
+                    <inputColumn
+                      refId="Package\데이터 흐름 태스크 2\대상 7 - 총합가격.Inputs[Destination Input].Columns[seatCost]"
+                      cachedDataType="cy"
+                      cachedName="seatCost"
+                      externalMetadataColumnId="Package\데이터 흐름 태스크 2\대상 7 - 총합가격.Inputs[Destination Input].ExternalColumns[seatCost]"
+                      lineageId="Package\데이터 흐름 태스크 2\원본 7 - 총합가격.Outputs[OLE DB 원본 출력].Columns[seatCost]" />
+                    <inputColumn
+                      refId="Package\데이터 흐름 태스크 2\대상 7 - 총합가격.Inputs[Destination Input].Columns[총합가격]"
+                      cachedDataType="cy"
+                      cachedName="총합가격"
+                      externalMetadataColumnId="Package\데이터 흐름 태스크 2\대상 7 - 총합가격.Inputs[Destination Input].ExternalColumns[총합가격]"
+                      lineageId="Package\데이터 흐름 태스크 2\원본 7 - 총합가격.Outputs[OLE DB 원본 출력].Columns[총합가격]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\데이터 흐름 태스크 2\대상 7 - 총합가격.Inputs[Destination Input].ExternalColumns[memberID]"
+                      codePage="949"
+                      dataType="str"
+                      length="8"
+                      name="memberID" />
+                    <externalMetadataColumn
+                      refId="Package\데이터 흐름 태스크 2\대상 7 - 총합가격.Inputs[Destination Input].ExternalColumns[flightCost]"
+                      dataType="cy"
+                      name="flightCost"
+                      scale="4" />
+                    <externalMetadataColumn
+                      refId="Package\데이터 흐름 태스크 2\대상 7 - 총합가격.Inputs[Destination Input].ExternalColumns[airplaneCost]"
+                      dataType="cy"
+                      name="airplaneCost"
+                      scale="4" />
+                    <externalMetadataColumn
+                      refId="Package\데이터 흐름 태스크 2\대상 7 - 총합가격.Inputs[Destination Input].ExternalColumns[seatCost]"
+                      dataType="cy"
+                      name="seatCost"
+                      scale="4" />
+                    <externalMetadataColumn
+                      refId="Package\데이터 흐름 태스크 2\대상 7 - 총합가격.Inputs[Destination Input].ExternalColumns[총합가격]"
+                      dataType="cy"
+                      name="총합가격"
+                      scale="4" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\데이터 흐름 태스크 2\대상 7 - 총합가격.Outputs[OLE DB 대상 오류 출력]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB 대상 오류 출력"
+                  synchronousInputId="Package\데이터 흐름 태스크 2\대상 7 - 총합가격.Inputs[Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\데이터 흐름 태스크 2\대상 7 - 총합가격.Outputs[OLE DB 대상 오류 출력].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\데이터 흐름 태스크 2\대상 7 - 총합가격.Outputs[OLE DB 대상 오류 출력].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\데이터 흐름 태스크 2\대상 7 - 총합가격.Outputs[OLE DB 대상 오류 출력].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\데이터 흐름 태스크 2\대상 7 - 총합가격.Outputs[OLE DB 대상 오류 출력].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\데이터 흐름 태스크 2\원본 5 - 예약현황메인키"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB 원본;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All rights reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB 원본"
+              name="원본 5 - 예약현황메인키"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="명령이 종료되기 전의 제한 시간 값(초)입니다. 값 0은 제한 시간이 없음을 나타냅니다."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="행 집합을 여는 데 사용되는 데이터베이스 개체의 이름을 지정합니다."
+                  name="OpenRowset">[dbo].[예약현황메인키]</property>
+                <property
+                  dataType="System.String"
+                  description="행 집합을 여는 데 사용되는 데이터베이스 개체의 이름이 들어 있는 변수를 지정합니다."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="실행할 SQL 명령입니다."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="실행할 SQL 명령이 들어 있는 변수입니다."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="데이터 원본에서 코드 페이지 정보를 사용할 수 없을 때 사용할 열 코드 페이지를 지정합니다."
+                  name="DefaultCodePage">949</property>
+                <property
+                  dataType="System.Boolean"
+                  description="문자 데이터를 설명할 때 DefaultCodePage 속성 값을 사용하도록 합니다."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="데이터베이스에 액세스하는 데 사용되는 모드를 지정합니다."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="SQL 명령의 매개 변수와 변수 사이의 매핑입니다."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\데이터 흐름 태스크 2\원본 5 - 예약현황메인키.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[SourceConnectionOLEDB]"
+                  connectionManagerRefId="Package.ConnectionManagers[SourceConnectionOLEDB]"
+                  description="데이터베이스에 액세스하는 데 사용되는 OLE DB 런타임 연결입니다."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\데이터 흐름 태스크 2\원본 5 - 예약현황메인키.Outputs[OLE DB 원본 출력]"
+                  name="OLE DB 원본 출력">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\데이터 흐름 태스크 2\원본 5 - 예약현황메인키.Outputs[OLE DB 원본 출력].Columns[memberID]"
+                      codePage="949"
+                      dataType="str"
+                      errorOrTruncationOperation="변환"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\데이터 흐름 태스크 2\원본 5 - 예약현황메인키.Outputs[OLE DB 원본 출력].ExternalColumns[memberID]"
+                      length="8"
+                      lineageId="Package\데이터 흐름 태스크 2\원본 5 - 예약현황메인키.Outputs[OLE DB 원본 출력].Columns[memberID]"
+                      name="memberID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\데이터 흐름 태스크 2\원본 5 - 예약현황메인키.Outputs[OLE DB 원본 출력].Columns[flightNumber]"
+                      codePage="949"
+                      dataType="str"
+                      errorOrTruncationOperation="변환"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\데이터 흐름 태스크 2\원본 5 - 예약현황메인키.Outputs[OLE DB 원본 출력].ExternalColumns[flightNumber]"
+                      length="10"
+                      lineageId="Package\데이터 흐름 태스크 2\원본 5 - 예약현황메인키.Outputs[OLE DB 원본 출력].Columns[flightNumber]"
+                      name="flightNumber"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\데이터 흐름 태스크 2\원본 5 - 예약현황메인키.Outputs[OLE DB 원본 출력].Columns[airplaneNumber]"
+                      codePage="949"
+                      dataType="str"
+                      errorOrTruncationOperation="변환"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\데이터 흐름 태스크 2\원본 5 - 예약현황메인키.Outputs[OLE DB 원본 출력].ExternalColumns[airplaneNumber]"
+                      length="10"
+                      lineageId="Package\데이터 흐름 태스크 2\원본 5 - 예약현황메인키.Outputs[OLE DB 원본 출력].Columns[airplaneNumber]"
+                      name="airplaneNumber"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\데이터 흐름 태스크 2\원본 5 - 예약현황메인키.Outputs[OLE DB 원본 출력].Columns[seatNumber]"
+                      codePage="949"
+                      dataType="str"
+                      errorOrTruncationOperation="변환"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\데이터 흐름 태스크 2\원본 5 - 예약현황메인키.Outputs[OLE DB 원본 출력].ExternalColumns[seatNumber]"
+                      length="10"
+                      lineageId="Package\데이터 흐름 태스크 2\원본 5 - 예약현황메인키.Outputs[OLE DB 원본 출력].Columns[seatNumber]"
+                      name="seatNumber"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\데이터 흐름 태스크 2\원본 5 - 예약현황메인키.Outputs[OLE DB 원본 출력].ExternalColumns[memberID]"
+                      codePage="949"
+                      dataType="str"
+                      length="8"
+                      name="memberID" />
+                    <externalMetadataColumn
+                      refId="Package\데이터 흐름 태스크 2\원본 5 - 예약현황메인키.Outputs[OLE DB 원본 출력].ExternalColumns[flightNumber]"
+                      codePage="949"
+                      dataType="str"
+                      length="10"
+                      name="flightNumber" />
+                    <externalMetadataColumn
+                      refId="Package\데이터 흐름 태스크 2\원본 5 - 예약현황메인키.Outputs[OLE DB 원본 출력].ExternalColumns[airplaneNumber]"
+                      codePage="949"
+                      dataType="str"
+                      length="10"
+                      name="airplaneNumber" />
+                    <externalMetadataColumn
+                      refId="Package\데이터 흐름 태스크 2\원본 5 - 예약현황메인키.Outputs[OLE DB 원본 출력].ExternalColumns[seatNumber]"
+                      codePage="949"
+                      dataType="str"
+                      length="10"
+                      name="seatNumber" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\데이터 흐름 태스크 2\원본 5 - 예약현황메인키.Outputs[OLE DB 원본 오류 출력]"
+                  isErrorOut="true"
+                  name="OLE DB 원본 오류 출력">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\데이터 흐름 태스크 2\원본 5 - 예약현황메인키.Outputs[OLE DB 원본 오류 출력].Columns[memberID]"
+                      codePage="949"
+                      dataType="str"
+                      length="8"
+                      lineageId="Package\데이터 흐름 태스크 2\원본 5 - 예약현황메인키.Outputs[OLE DB 원본 오류 출력].Columns[memberID]"
+                      name="memberID" />
+                    <outputColumn
+                      refId="Package\데이터 흐름 태스크 2\원본 5 - 예약현황메인키.Outputs[OLE DB 원본 오류 출력].Columns[flightNumber]"
+                      codePage="949"
+                      dataType="str"
+                      length="10"
+                      lineageId="Package\데이터 흐름 태스크 2\원본 5 - 예약현황메인키.Outputs[OLE DB 원본 오류 출력].Columns[flightNumber]"
+                      name="flightNumber" />
+                    <outputColumn
+                      refId="Package\데이터 흐름 태스크 2\원본 5 - 예약현황메인키.Outputs[OLE DB 원본 오류 출력].Columns[airplaneNumber]"
+                      codePage="949"
+                      dataType="str"
+                      length="10"
+                      lineageId="Package\데이터 흐름 태스크 2\원본 5 - 예약현황메인키.Outputs[OLE DB 원본 오류 출력].Columns[airplaneNumber]"
+                      name="airplaneNumber" />
+                    <outputColumn
+                      refId="Package\데이터 흐름 태스크 2\원본 5 - 예약현황메인키.Outputs[OLE DB 원본 오류 출력].Columns[seatNumber]"
+                      codePage="949"
+                      dataType="str"
+                      length="10"
+                      lineageId="Package\데이터 흐름 태스크 2\원본 5 - 예약현황메인키.Outputs[OLE DB 원본 오류 출력].Columns[seatNumber]"
+                      name="seatNumber" />
+                    <outputColumn
+                      refId="Package\데이터 흐름 태스크 2\원본 5 - 예약현황메인키.Outputs[OLE DB 원본 오류 출력].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\데이터 흐름 태스크 2\원본 5 - 예약현황메인키.Outputs[OLE DB 원본 오류 출력].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\데이터 흐름 태스크 2\원본 5 - 예약현황메인키.Outputs[OLE DB 원본 오류 출력].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\데이터 흐름 태스크 2\원본 5 - 예약현황메인키.Outputs[OLE DB 원본 오류 출력].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\데이터 흐름 태스크 2\원본 6 - 이름아이디"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB 원본;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All rights reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB 원본"
+              name="원본 6 - 이름아이디"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="명령이 종료되기 전의 제한 시간 값(초)입니다. 값 0은 제한 시간이 없음을 나타냅니다."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="행 집합을 여는 데 사용되는 데이터베이스 개체의 이름을 지정합니다."
+                  name="OpenRowset">[dbo].[이름아이디]</property>
+                <property
+                  dataType="System.String"
+                  description="행 집합을 여는 데 사용되는 데이터베이스 개체의 이름이 들어 있는 변수를 지정합니다."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="실행할 SQL 명령입니다."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="실행할 SQL 명령이 들어 있는 변수입니다."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="데이터 원본에서 코드 페이지 정보를 사용할 수 없을 때 사용할 열 코드 페이지를 지정합니다."
+                  name="DefaultCodePage">949</property>
+                <property
+                  dataType="System.Boolean"
+                  description="문자 데이터를 설명할 때 DefaultCodePage 속성 값을 사용하도록 합니다."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="데이터베이스에 액세스하는 데 사용되는 모드를 지정합니다."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="SQL 명령의 매개 변수와 변수 사이의 매핑입니다."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\데이터 흐름 태스크 2\원본 6 - 이름아이디.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[SourceConnectionOLEDB]"
+                  connectionManagerRefId="Package.ConnectionManagers[SourceConnectionOLEDB]"
+                  description="데이터베이스에 액세스하는 데 사용되는 OLE DB 런타임 연결입니다."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\데이터 흐름 태스크 2\원본 6 - 이름아이디.Outputs[OLE DB 원본 출력]"
+                  name="OLE DB 원본 출력">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\데이터 흐름 태스크 2\원본 6 - 이름아이디.Outputs[OLE DB 원본 출력].Columns[memberID]"
+                      codePage="949"
+                      dataType="str"
+                      errorOrTruncationOperation="변환"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\데이터 흐름 태스크 2\원본 6 - 이름아이디.Outputs[OLE DB 원본 출력].ExternalColumns[memberID]"
+                      length="8"
+                      lineageId="Package\데이터 흐름 태스크 2\원본 6 - 이름아이디.Outputs[OLE DB 원본 출력].Columns[memberID]"
+                      name="memberID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\데이터 흐름 태스크 2\원본 6 - 이름아이디.Outputs[OLE DB 원본 출력].Columns[memberName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="변환"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\데이터 흐름 태스크 2\원본 6 - 이름아이디.Outputs[OLE DB 원본 출력].ExternalColumns[memberName]"
+                      length="5"
+                      lineageId="Package\데이터 흐름 태스크 2\원본 6 - 이름아이디.Outputs[OLE DB 원본 출력].Columns[memberName]"
+                      name="memberName"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\데이터 흐름 태스크 2\원본 6 - 이름아이디.Outputs[OLE DB 원본 출력].ExternalColumns[memberID]"
+                      codePage="949"
+                      dataType="str"
+                      length="8"
+                      name="memberID" />
+                    <externalMetadataColumn
+                      refId="Package\데이터 흐름 태스크 2\원본 6 - 이름아이디.Outputs[OLE DB 원본 출력].ExternalColumns[memberName]"
+                      dataType="wstr"
+                      length="5"
+                      name="memberName" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\데이터 흐름 태스크 2\원본 6 - 이름아이디.Outputs[OLE DB 원본 오류 출력]"
+                  isErrorOut="true"
+                  name="OLE DB 원본 오류 출력">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\데이터 흐름 태스크 2\원본 6 - 이름아이디.Outputs[OLE DB 원본 오류 출력].Columns[memberID]"
+                      codePage="949"
+                      dataType="str"
+                      length="8"
+                      lineageId="Package\데이터 흐름 태스크 2\원본 6 - 이름아이디.Outputs[OLE DB 원본 오류 출력].Columns[memberID]"
+                      name="memberID" />
+                    <outputColumn
+                      refId="Package\데이터 흐름 태스크 2\원본 6 - 이름아이디.Outputs[OLE DB 원본 오류 출력].Columns[memberName]"
+                      dataType="wstr"
+                      length="5"
+                      lineageId="Package\데이터 흐름 태스크 2\원본 6 - 이름아이디.Outputs[OLE DB 원본 오류 출력].Columns[memberName]"
+                      name="memberName" />
+                    <outputColumn
+                      refId="Package\데이터 흐름 태스크 2\원본 6 - 이름아이디.Outputs[OLE DB 원본 오류 출력].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\데이터 흐름 태스크 2\원본 6 - 이름아이디.Outputs[OLE DB 원본 오류 출력].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\데이터 흐름 태스크 2\원본 6 - 이름아이디.Outputs[OLE DB 원본 오류 출력].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\데이터 흐름 태스크 2\원본 6 - 이름아이디.Outputs[OLE DB 원본 오류 출력].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\데이터 흐름 태스크 2\원본 7 - 총합가격"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB 원본;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All rights reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB 원본"
+              name="원본 7 - 총합가격"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="명령이 종료되기 전의 제한 시간 값(초)입니다. 값 0은 제한 시간이 없음을 나타냅니다."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="행 집합을 여는 데 사용되는 데이터베이스 개체의 이름을 지정합니다."
+                  name="OpenRowset">[dbo].[총합가격]</property>
+                <property
+                  dataType="System.String"
+                  description="행 집합을 여는 데 사용되는 데이터베이스 개체의 이름이 들어 있는 변수를 지정합니다."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="실행할 SQL 명령입니다."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="실행할 SQL 명령이 들어 있는 변수입니다."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="데이터 원본에서 코드 페이지 정보를 사용할 수 없을 때 사용할 열 코드 페이지를 지정합니다."
+                  name="DefaultCodePage">949</property>
+                <property
+                  dataType="System.Boolean"
+                  description="문자 데이터를 설명할 때 DefaultCodePage 속성 값을 사용하도록 합니다."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="데이터베이스에 액세스하는 데 사용되는 모드를 지정합니다."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="SQL 명령의 매개 변수와 변수 사이의 매핑입니다."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\데이터 흐름 태스크 2\원본 7 - 총합가격.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[SourceConnectionOLEDB]"
+                  connectionManagerRefId="Package.ConnectionManagers[SourceConnectionOLEDB]"
+                  description="데이터베이스에 액세스하는 데 사용되는 OLE DB 런타임 연결입니다."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\데이터 흐름 태스크 2\원본 7 - 총합가격.Outputs[OLE DB 원본 출력]"
+                  name="OLE DB 원본 출력">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\데이터 흐름 태스크 2\원본 7 - 총합가격.Outputs[OLE DB 원본 출력].Columns[memberID]"
+                      codePage="949"
+                      dataType="str"
+                      errorOrTruncationOperation="변환"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\데이터 흐름 태스크 2\원본 7 - 총합가격.Outputs[OLE DB 원본 출력].ExternalColumns[memberID]"
+                      length="8"
+                      lineageId="Package\데이터 흐름 태스크 2\원본 7 - 총합가격.Outputs[OLE DB 원본 출력].Columns[memberID]"
+                      name="memberID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\데이터 흐름 태스크 2\원본 7 - 총합가격.Outputs[OLE DB 원본 출력].Columns[flightCost]"
+                      dataType="cy"
+                      errorOrTruncationOperation="변환"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\데이터 흐름 태스크 2\원본 7 - 총합가격.Outputs[OLE DB 원본 출력].ExternalColumns[flightCost]"
+                      lineageId="Package\데이터 흐름 태스크 2\원본 7 - 총합가격.Outputs[OLE DB 원본 출력].Columns[flightCost]"
+                      name="flightCost"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\데이터 흐름 태스크 2\원본 7 - 총합가격.Outputs[OLE DB 원본 출력].Columns[airplaneCost]"
+                      dataType="cy"
+                      errorOrTruncationOperation="변환"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\데이터 흐름 태스크 2\원본 7 - 총합가격.Outputs[OLE DB 원본 출력].ExternalColumns[airplaneCost]"
+                      lineageId="Package\데이터 흐름 태스크 2\원본 7 - 총합가격.Outputs[OLE DB 원본 출력].Columns[airplaneCost]"
+                      name="airplaneCost"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\데이터 흐름 태스크 2\원본 7 - 총합가격.Outputs[OLE DB 원본 출력].Columns[seatCost]"
+                      dataType="cy"
+                      errorOrTruncationOperation="변환"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\데이터 흐름 태스크 2\원본 7 - 총합가격.Outputs[OLE DB 원본 출력].ExternalColumns[seatCost]"
+                      lineageId="Package\데이터 흐름 태스크 2\원본 7 - 총합가격.Outputs[OLE DB 원본 출력].Columns[seatCost]"
+                      name="seatCost"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\데이터 흐름 태스크 2\원본 7 - 총합가격.Outputs[OLE DB 원본 출력].Columns[총합가격]"
+                      dataType="cy"
+                      errorOrTruncationOperation="변환"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\데이터 흐름 태스크 2\원본 7 - 총합가격.Outputs[OLE DB 원본 출력].ExternalColumns[총합가격]"
+                      lineageId="Package\데이터 흐름 태스크 2\원본 7 - 총합가격.Outputs[OLE DB 원본 출력].Columns[총합가격]"
+                      name="총합가격"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\데이터 흐름 태스크 2\원본 7 - 총합가격.Outputs[OLE DB 원본 출력].ExternalColumns[memberID]"
+                      codePage="949"
+                      dataType="str"
+                      length="8"
+                      name="memberID" />
+                    <externalMetadataColumn
+                      refId="Package\데이터 흐름 태스크 2\원본 7 - 총합가격.Outputs[OLE DB 원본 출력].ExternalColumns[flightCost]"
+                      dataType="cy"
+                      name="flightCost" />
+                    <externalMetadataColumn
+                      refId="Package\데이터 흐름 태스크 2\원본 7 - 총합가격.Outputs[OLE DB 원본 출력].ExternalColumns[airplaneCost]"
+                      dataType="cy"
+                      name="airplaneCost" />
+                    <externalMetadataColumn
+                      refId="Package\데이터 흐름 태스크 2\원본 7 - 총합가격.Outputs[OLE DB 원본 출력].ExternalColumns[seatCost]"
+                      dataType="cy"
+                      name="seatCost" />
+                    <externalMetadataColumn
+                      refId="Package\데이터 흐름 태스크 2\원본 7 - 총합가격.Outputs[OLE DB 원본 출력].ExternalColumns[총합가격]"
+                      dataType="cy"
+                      name="총합가격" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\데이터 흐름 태스크 2\원본 7 - 총합가격.Outputs[OLE DB 원본 오류 출력]"
+                  isErrorOut="true"
+                  name="OLE DB 원본 오류 출력">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\데이터 흐름 태스크 2\원본 7 - 총합가격.Outputs[OLE DB 원본 오류 출력].Columns[memberID]"
+                      codePage="949"
+                      dataType="str"
+                      length="8"
+                      lineageId="Package\데이터 흐름 태스크 2\원본 7 - 총합가격.Outputs[OLE DB 원본 오류 출력].Columns[memberID]"
+                      name="memberID" />
+                    <outputColumn
+                      refId="Package\데이터 흐름 태스크 2\원본 7 - 총합가격.Outputs[OLE DB 원본 오류 출력].Columns[flightCost]"
+                      dataType="cy"
+                      lineageId="Package\데이터 흐름 태스크 2\원본 7 - 총합가격.Outputs[OLE DB 원본 오류 출력].Columns[flightCost]"
+                      name="flightCost" />
+                    <outputColumn
+                      refId="Package\데이터 흐름 태스크 2\원본 7 - 총합가격.Outputs[OLE DB 원본 오류 출력].Columns[airplaneCost]"
+                      dataType="cy"
+                      lineageId="Package\데이터 흐름 태스크 2\원본 7 - 총합가격.Outputs[OLE DB 원본 오류 출력].Columns[airplaneCost]"
+                      name="airplaneCost" />
+                    <outputColumn
+                      refId="Package\데이터 흐름 태스크 2\원본 7 - 총합가격.Outputs[OLE DB 원본 오류 출력].Columns[seatCost]"
+                      dataType="cy"
+                      lineageId="Package\데이터 흐름 태스크 2\원본 7 - 총합가격.Outputs[OLE DB 원본 오류 출력].Columns[seatCost]"
+                      name="seatCost" />
+                    <outputColumn
+                      refId="Package\데이터 흐름 태스크 2\원본 7 - 총합가격.Outputs[OLE DB 원본 오류 출력].Columns[총합가격]"
+                      dataType="cy"
+                      lineageId="Package\데이터 흐름 태스크 2\원본 7 - 총합가격.Outputs[OLE DB 원본 오류 출력].Columns[총합가격]"
+                      name="총합가격" />
+                    <outputColumn
+                      refId="Package\데이터 흐름 태스크 2\원본 7 - 총합가격.Outputs[OLE DB 원본 오류 출력].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\데이터 흐름 태스크 2\원본 7 - 총합가격.Outputs[OLE DB 원본 오류 출력].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\데이터 흐름 태스크 2\원본 7 - 총합가격.Outputs[OLE DB 원본 오류 출력].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\데이터 흐름 태스크 2\원본 7 - 총합가격.Outputs[OLE DB 원본 오류 출력].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\데이터 흐름 태스크 2.Paths[OLE DB 원본 출력]"
+              endId="Package\데이터 흐름 태스크 2\대상 5 - 예약현황메인키.Inputs[Destination Input]"
+              name="OLE DB 원본 출력"
+              startId="Package\데이터 흐름 태스크 2\원본 5 - 예약현황메인키.Outputs[OLE DB 원본 출력]" />
+            <path
+              refId="Package\데이터 흐름 태스크 2.Paths[OLE DB 원본 출력1]"
+              endId="Package\데이터 흐름 태스크 2\대상 6 - 이름아이디.Inputs[Destination Input]"
+              name="OLE DB 원본 출력"
+              startId="Package\데이터 흐름 태스크 2\원본 6 - 이름아이디.Outputs[OLE DB 원본 출력]" />
+            <path
+              refId="Package\데이터 흐름 태스크 2.Paths[OLE DB 원본 출력2]"
+              endId="Package\데이터 흐름 태스크 2\대상 7 - 총합가격.Inputs[Destination Input]"
+              name="OLE DB 원본 출력"
+              startId="Package\데이터 흐름 태스크 2\원본 7 - 총합가격.Outputs[OLE DB 원본 출력]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[{4D354612-32D5-4094-B2F9-8991E41D99D6\}]"
+      DTS:CreationName=""
+      DTS:DTSID="{4D354612-32D5-4094-B2F9-8991E41D99D6}"
+      DTS:From="Package\데이터 흐름 태스크 1"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="{4D354612-32D5-4094-B2F9-8991E41D99D6}"
+      DTS:To="Package\SQL 태스크 2 준비" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[{B4856064-8C3B-4529-9B8D-74AEC120C936\}]"
+      DTS:CreationName=""
+      DTS:DTSID="{B4856064-8C3B-4529-9B8D-74AEC120C936}"
+      DTS:From="Package\SQL 태스크 1 준비"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="{B4856064-8C3B-4529-9B8D-74AEC120C936}"
+      DTS:To="Package\데이터 흐름 태스크 1" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[{EB8DA78D-D651-4B51-B15A-DFEEDEE7465A\}]"
+      DTS:CreationName=""
+      DTS:DTSID="{EB8DA78D-D651-4B51-B15A-DFEEDEE7465A}"
+      DTS:From="Package\SQL 태스크 2 준비"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="{EB8DA78D-D651-4B51-B15A-DFEEDEE7465A}"
+      DTS:To="Package\데이터 흐름 태스크 2" />
+  </DTS:PrecedenceConstraints>
+</DTS:Executable>
